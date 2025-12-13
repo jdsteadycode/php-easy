@@ -1,0 +1,73 @@
+/* info-container */
+.info-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 3px 3px 10px rgb(188, 188, 188);
+    padding: 25px;
+}
+
+.info-heading {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #5500cb;
+}
+
+/* form styles */
+.topic-form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.topic-input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid #5500cb;
+    outline: none;
+    font-size: 15px;
+}
+
+.topic-add-btn {
+    padding: 12px 20px;
+    background-color: #5500cb;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.topic-add-btn:hover {
+    opacity: 0.85;
+}
+
+/* Error Message */
+.error-msg {
+  color: red;
+  margin-top: 15px;
+  font-size: 14px;
+  display: none;
+}
+
+/* success Message */
+.success-msg {
+  color: rgb(71, 253, 71);
+  margin-top: 15px;
+  font-size: 14px;
+  display: none;
+}
+
+/* deleted text */
+.deleted-text {
+    background-color: red;
+    border-radius: 7px;
+    font-size: 14px;
+    padding: 2px;
+    color: #fff;
+}

@@ -1,0 +1,77 @@
+/* 
+   Logout Modal Styles
+*/
+
+.logout-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.3);
+    display: none; /* hidden by default */
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    backdrop-filter: blur(3px);
+}
+
+.logout-modal.show {
+    display: flex;
+}
+
+.logout-modal-content {
+    background: var(--background-color2);
+    width: 350px;
+    padding: 25px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 1px 1px 15px rgba(161, 182, 253, 0.825);
+}
+
+.logout-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+}
+
+.logout-msg {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+.logout-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.logout-cancel,
+.logout-confirm {
+    width: 48%;
+    padding: 10px 0;
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.logout-cancel {
+    background-color: var(--background-color3);
+    color: #444;
+}
+
+.logout-cancel:hover {
+    background-color: #dcdcdc;
+}
+
+.logout-confirm {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+.logout-confirm:hover {
+    background-color: #e60000;
+}

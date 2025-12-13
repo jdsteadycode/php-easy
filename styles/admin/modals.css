@@ -1,0 +1,103 @@
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.4);
+    display: none;
+    z-index: 1000;
+}
+
+/* Modal Container */
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    transform: translate(-50%, -50%);
+    background: var(--background-color2);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 15px rgba(0,0,0,0.2);
+    display: none;
+    z-index: 1001;
+}
+
+.modal-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--two-use-color);
+    margin-bottom: 15px;
+}
+
+.modal-content p {
+    margin: 5px 0;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.modal-input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    margin: 15px 0;
+    outline: none;
+}
+
+/* button group for update/ delete modal */
+.modal-button-group {
+    display: flex;
+    gap: 10px;
+}
+
+
+.primary-btn {
+    width: 50%;
+    padding: 10px;
+    background: var(--two-use-color);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.danger-btn {
+    width: 50%;
+    padding: 10px 15px;
+    background: orangered;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.close-btn {
+    width: 50%;
+    padding: 10px 15px;
+    background: #ccc;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* view and delete modal's close button */
+.view-delete-close-btn {
+    width: 100% !important;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.modal-warning {
+    font-size: 16px;
+    font-weight: 500;
+    color: #d9534f;
+    margin-bottom: 20px;
+}

@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+:root {
+  --background-color1: #fafaff;
+  --background-color2: #ffffff;
+  --background-color3: #ededed;
+  --background-color4: #cad7fda4;
+  --primary-color: #4b49ac;
+  --two-use-color: #5500cb;
+  --box-shadow: 3px 3px 10px rgba(0, 30, 87, 0.2);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: var(--background-color4);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Center Container */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Card */
+.login-card {
+  width: 380px;
+  padding: 35px 30px;
+  background-color: var(--background-color2);
+  border-radius: 20px;
+  box-shadow: var(--box-shadow);
+  text-align: center;
+}
+
+.login-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--two-use-color);
+}
+
+.login-subtitle {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 25px;
+}
+
+/* Inputs */
+.input-group {
+  text-align: left;
+  margin-bottom: 18px;
+}
+
+.input-group label {
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  border-radius: 10px;
+  border: 2px solid #d7d7d7;
+  background-color: var(--background-color3);
+  font-size: 15px;
+  outline: none;
+  transition: 0.2s;
+}
+
+.input-group input:focus {
+  border-color: var(--two-use-color);
+}
+
+/* Button */
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--two-use-color);
+  color: white;
+  font-weight: 600;
+  font-size: 17px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: transform 0.25s ease;
+}
+
+.login-btn:hover {
+  transform: scale(1.03);
+}
+
+/* Error Message */
+.error-msg {
+  color: red;
+  margin-top: 15px;
+  font-size: 14px;
+  display: none;
+}
+
+/* success Message */
+.success-msg {
+  color: rgb(71, 253, 71);
+  margin-top: 15px;
+  font-size: 14px;
+  display: none;
+}
