@@ -79,7 +79,7 @@
     //     "INSERT INTO topics (name, created_at) VALUES (:name, :created_at)",
     //     [
     //         "name" => false,
-    //         "created_at" => date("d-m-y h:i:s")
+    //         "created_at" => date("Y-m-d H:i:s")
     //     ]
     // );
 
@@ -88,7 +88,7 @@
     // $deleted_rows =  $topic->delete_topic(
     //     "UPDATE topics SET deleted_at = :deleted_at WHERE id = :id",
     //     [
-    //         "deleted_at" => date("d-m-y h:i:s"),
+    //         "deleted_at" => date("Y-m-d H:i:s"),
     //         "id" => 1
     //     ]
     // );
@@ -99,7 +99,7 @@
     //     "UPDATE topics SET name = :name, updated_at = :updated_at WHERE id = :id",
     //     [
     //         "name" => "axa",
-    //         "updated_at" => date("d-m-y h:i:s"),
+    //         "updated_at" => date("Y-m-d H:i:s"),
     //         "id" => 1
     //     ]
     // );
