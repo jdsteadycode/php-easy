@@ -33,6 +33,12 @@
         href="../../styles/admin/modals.css?v=<?php echo time(); ?>"
     />
 
+    <!-- for manage_problem_set css -->
+    <link 
+        rel="stylesheet"
+        href="../../styles/admin/contents/manage_problem_sets.css?v=<?php echo time(); ?>"
+    />
+
     <!-- responsive design -->
      <link 
         rel="stylesheet"
@@ -52,117 +58,6 @@
 
         <!-- main content -->
         <div class="main">
-            <!-- <div class="searchbar2">
-                <input type="text" name="" id="" placeholder="Search" />
-                <div class="searchbtn">
-                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210180758/Untitled-design-(28).png"
-                        class="icn srchicn" alt="search-button" />
-                </div>
-            </div> -->
-
-
-            <!-- top content boxes -->
-            <div class="box-container">
-                <div class="box box1">
-                    <div class="text">
-                        <h2 class="topic-heading">10</h2>
-                        <h2 class="topic">Total categories</h2>
-                    </div>
-
-                    <!-- <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210184645/Untitled-design-(31).png"
-                        alt="Views" /> -->
-
-                    <span class="box-emoji">
-                        👀
-                    </span>
-                </div>
-
-                <div class="box box2">
-                    <div class="text">
-                        <h2 class="topic-heading">150</h2>
-                        <h2 class="topic">Total topics</h2>
-                    </div>
-
-                    <!-- <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210185030/14.png" alt="likes" /> -->
-
-                    <span class="box-emoji">
-                        👍
-                    </span>
-                </div>
-
-                <div class="box box3">
-                    <div class="text">
-                        <h2 class="topic-heading">320</h2>
-                        <h2 class="topic">Total Submissions</h2>
-                    </div>
-
-                    <!-- <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210184645/Untitled-design-(32).png"
-                        alt="comments" /> -->
-
-                    <span class="box-emoji">
-                        ✔️
-                    </span>
-                </div>
-
-                <div class="box box4">
-                    <div class="text">
-                        <h2 class="topic-heading">70</h2>
-                        <h2 class="topic">Total users</h2>
-                    </div>
-
-                    <!-- <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210185029/13.png"
-                        alt="published" /> -->
-
-                        <span class="box-emoji">
-                            🔢
-                        </span>
-                </div>
-            </div>
-
-            <!-- main content container -->
-            <div class="main-content-container">
-
-                <!-- content-header -->
-                <div class="main-content-header">
-                    <h1 class="main-content-heading">Current Users</h1>
-                    <button class="view">View All</button>
-                </div>
-
-                <!-- body -->
-                <div class="main-content-body">
-                    <div class="main-content-topic-heading">
-                        <h3 class="t-op">Name</h3>
-                        <h3 class="t-op">Has practiced?</h3>
-                        <h3 class="t-op">Submissions</h3>
-                        <h3 class="t-op">Status</h3>
-                    </div>
-
-                    <div class="items">
-                        <div class="item1">
-                            <h3 class="t-op-nextlvl">Jake</h3>
-                            <h3 class="t-op-nextlvl">No</h3>
-                            <h3 class="t-op-nextlvl">5</h3>
-                            <h3 class="t-op-nextlvl label-tag">Active</h3>
-                        </div>
-
-                        <div class="item1">
-                            <h3 class="t-op-nextlvl">Sam</h3>
-                            <h3 class="t-op-nextlvl">Yes</h3>
-                            <h3 class="t-op-nextlvl">10</h3>
-                            <h3 class="t-op-nextlvl label-tag">Active</h3>
-                        </div>
-
-                        <div class="item1">
-                            <h3 class="t-op-nextlvl">Palash</h3>
-                            <h3 class="t-op-nextlvl">No</h3>
-                            <h3 class="t-op-nextlvl">0</h3>
-                            <h3 class="t-op-nextlvl label-tag in-active">In-Active</h3>
-                        </div>
-
-                       
-                    </div>
-                </div>
-            </div>
         </div>
 
     </main>
@@ -183,7 +78,7 @@
             <p><strong>Total Problems Related:</strong> <span id="viewProblemsRelated"></span></p>
         </div>
 
-        <button class="close-btn view-delete-close-btn " onclick="closeModal(event)">Close</button>
+        <button class="close-btn view-delete-close-btn">Close</button>
     </div>
 
 
@@ -198,8 +93,8 @@
             
             <!-- buttons -->
             <div class="modal-button-group">
-                <button class="primary-btn" onclick="handleUpdateTopic(event);">Update</button>
-                <button class="close-btn" onclick="closeModal(event)">Cancel</button>
+                <button class="primary-btn">Update</button>
+                <button class="close-btn">Cancel</button>
             </div>
         </form>
 
@@ -217,16 +112,113 @@
         <p class="modal-warning">Are you sure you want to delete this topic?</p>
 
         <div class="modal-button-group">
-            <button class="danger-btn" id="confirmDeleteBtn" onclick="handleTopicDelete(event);">Yes Delete</button>
-            <button class="close-btn" onclick="closeModal(event)">Cancel</button>
+            <button class="danger-btn" id="confirmDeleteBtn">Yes Delete</button>
+            <button class="close-btn">Cancel</button>
         </div>
     </div>
 
+
+    <!-- for problem-sets -->
+    <!-- Add / Update Problem Set Modal -->
+    <div id="addProblemSetModal" class="modal modal-lg">
+
+        <!-- modal header -->
+        <div class="modal-header">
+            <h2 class="modal-title">Add Problem Set</h2>
+            <span class="modal-close">×</span>
+        </div>
+
+        <!-- modal body -->
+        <form id="problemSetForm">
+
+            <!-- basic info section -->
+            <div class="modal-section">
+                <label>Title</label>
+                <input type="text" class="modal-input js-ps-title" required>
+
+                <label>Description</label>
+                <textarea class="modal-textarea js-ps-description"></textarea>
+            </div>
+
+            <!-- for difficulty and topics section -->
+            <section class="modal-section modal-grid-2">
+            <!-- DIFFICULTY -->
+                <div class="modal-section">
+                    <label>Difficulty</label>
+                    <select class="modal-input js-ps-difficulty">
+                        <option value="">Select difficulty</option>
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+
+                <!-- TOPICS -->
+                <div class="modal-section">
+                    <label>Assign Topics</label>
+                    <!-- Topics Dropdown -->
+                    <div class="topic-dropdown">
+
+                        <div class="topic-dropdown-header js-topic-toggle">
+                            <span class="selected-topics-text">
+                                Select Topics
+                            </span>
+                            <span class="dropdown-arrow">▾</span>
+                        </div>
+
+
+                        <div class="topic-dropdown-body js-topic-dropdown">
+                        
+
+                            <!-- for searching of topics -->
+                            <input 
+                                type="text"
+                                class="topic-search js-topic-search"
+                                placeholder="Search topics..."
+                            />
+                            
+                            <!-- list of available topics -->
+                            <div class="topic-list js-topic-list">
+                                
+                                <!-- each topic here.. -->
+                            </div>
+                        
+                        </div>
+
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- sample input/ output section -->
+            <section class="modal-section modal-grid-2">
+                <div>
+                    <label>Sample Input</label>
+                    <textarea class="modal-textarea js-ps-input"></textarea>
+                </div>
+                <div>
+                    <label>Sample Output</label>
+                    <textarea class="modal-textarea js-ps-output"></textarea>
+                </div>
+            </section>
+
+            <!-- hintstext section -->
+            <section class="modal-section">
+                <label>Hints</label>
+                <textarea class="modal-textarea js-ps-hints"></textarea>
+            </section>
+
+            <!-- save button -->
+            <button class="primary-btn">
+                Save
+            </button>
+        </form>
+    </div>
 
     <!-- footer section -->
     <?php require_once(FILE_PATH . "/components/admin/admin_footer.php") ?>
 
     <!-- scripts -->
-    <script src="../../scripts/admin/index.js?v=<?php echo time(); ?>"></script>
+    <script type="module" src="/php_easy/scripts/admin/index.js?v=<?php echo time(); ?>" defer></script>
 </body>
 </html>
