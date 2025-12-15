@@ -3,4 +3,12 @@ export const AdminStore = {
     // initial state for data..
     topics: [],
     problemSets: [],
+    currentUserId: null,
+
+    // () -> set the current user id..
+    setCurrentUserId: function(incomingUserId) {
+
+        // update the state..
+        this.currentUserId = incomingUserId;
+    }
 }
