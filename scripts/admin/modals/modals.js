@@ -2,7 +2,10 @@
 export const Modal = {
 
     // () -> to close the view/update/delete modal
-    closeModal: function() {
+    closeModal: function(event) {
+
+        // prevent the page reload.. (when update modal close button is clicked..)
+        if(event) event.preventDefault();   
 
         // hide the modal..
         document.getElementById("modalOverlay").style.display = "none";
