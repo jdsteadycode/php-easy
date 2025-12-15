@@ -1,3 +1,6 @@
+// check log..
+// console.log("dashboard html painted..");
+
 // html for dashboard..
 export const dashboardHTML = `
     <div class="main">
