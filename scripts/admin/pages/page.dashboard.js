@@ -1,3 +1,6 @@
+// check log..
+// console.log("dashboard page ui loaded..");
+
 // grab the modules..
 import {dashboardHTML} from "../templates/dashboard.html.js";
 
