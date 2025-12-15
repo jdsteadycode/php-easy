@@ -1,18 +1,35 @@
 // grab the modules..
 import {AuthActions} from "/php_easy/scripts/auth.js";
+import {AdminStore} from "/php_easy/scripts/admin/store.js";
 import {initManageTopics} from "/php_easy/scripts/admin/pages/page.topics.js";
+import {initManageProblemSets} from "/php_easy/scripts/admin/pages/page.problemSet.js";
 import {initManageLogout} from "/php_easy/scripts/admin/pages/page.logout.js";
 import {initManageDashboard} from "/php_easy/scripts/admin/pages/page.dashboard.js";
 import {Modal} from "/php_easy/scripts/admin/modals/modals.js";
 
 // when document is loaded..
-window.addEventListener("load", AuthActions.verifyOnLoad);
+window.addEventListener("load", async function(event) {
+
+    // get the verification status..
+    const verificationStatus = await AuthActions.verifyOnLoad();
+
+    // if un-authenticated..
+    if (verificationStatus["message"] !== "authenticated" || verificationStatus["status"] === false) {
+
+        // redirect the client back to login page..
+        window.location.href = `${window.location.origin}/php_easy/pages/auth/login.php`;
+        return;
+    }
+
+    // set the admin state..
+    AdminStore.setCurrentUserId(verificationStatus["user_id"]);
+});
 
 // when document is clicked..
 document.addEventListener("click", function(event) {
 
     // check if topics view/update/delete modal is clicked..
-    if(event.target.classList.contains("close-btn")) {
+    if(event.target.classList.contains("close-btn") || event.target.classList.contains("modal-close")) {
 
         // check log..
         // console.log("yes clicked");
@@ -92,9 +109,6 @@ function handlePageContent(page) {
 
             // handle topics view..
             initManageTopics();
-
-            // check log..
-            // console.log("load the manage topics view..");
             break;
 
         // when it is dashboard..
@@ -108,8 +122,8 @@ function handlePageContent(page) {
         case `Manage Problem Sets`:
 
             // handle the problem sets view..
-            // initManageProblemSets();
-            return "Coming Soon";
+            initManageProblemSets();
+            break;
 
         // when it is logout..
         case `Logout`:
