@@ -8,7 +8,9 @@ export const manageProblemSetsHTML = `
             
             <p class="info-description">Add some problem sets for sharpening logical thinking and interview preparation</p>
 
-            <button class="open-add-problem-set-btn js-open-add-modal-popup" onclick="handleOpenAddProblemSetModal();">➕ add</button>
+            <button 
+                class="open-add-problem-set-btn js-ps-open-add-problemset-modal" 
+            >➕ add</button>
         </div>
 
         <!-- main content container -->
@@ -36,30 +38,7 @@ export const manageProblemSetsHTML = `
                 <!-- rows -->
                 <div class="items js-problemset-items">
 
-                    <!-- example row -->
-                    <div class="item1">
-                        <h3 class="t-op-nextlvl">1</h3>
-                        <h3 class="t-op-nextlvl">PHP Arrays</h3>
-
-                        <h3 class="t-op-nextlvl">
-                            <span class="label-tag">Arrays</span>
-                            <span class="label-tag">Loops</span>
-                        </h3>
-
-                        <h3 class="t-op-nextlvl">
-                            <span class="label-tag">Easy</span>
-                        </h3>
-
-                        <h3 class="t-op-nextlvl">admin</h3>
-                        <h3 class="t-op-nextlvl">12 Jan 2025</h3>
-
-                        <div class="actions">
-                            <span onclick="openViewProblemSetModal(1)">👁️</span>
-                            <span onclick="openEditProblemSetModal(1)">✏️</span>
-                            <span onclick="openDeleteProblemSetModal(1)">🗑️</span>
-                        </div>
-                    </div>
-
+                    <!-- problemSets here... -->
                 </div>
             </div>
         </div>
