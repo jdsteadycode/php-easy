@@ -15,6 +15,10 @@
     color: #5500cb;
 }
 
+.info-description {
+    margin-block: 5px;
+}
+
 /* form styles */
 .topic-form {
     display: flex;

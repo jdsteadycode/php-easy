@@ -10,7 +10,7 @@
 
     .nav-option h3 {
         font-size: 15px;
-    }
+    }   
 
     .main-content-topic-heading,
     .item1,
@@ -78,6 +78,16 @@
         padding: 0 20px;
         font-size: 15px;
         border: 2px solid var(--secondary-color);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .modal-grid-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .primary-btn {
+        width: 100%;
     }
 }
 

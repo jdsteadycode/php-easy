@@ -1,0 +1,126 @@
+/* problemset form select */
+.problemset-select {
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid #5500cb;
+    outline: none;
+    font-size: 15px;
+    background: #fff;
+}
+
+/* topics inside table */
+.label-tag {
+    display: inline-block;
+    margin-right: 5px;
+    margin-top: 3px;
+    font-size: 12px;
+}
+
+/* difficulty colors */
+.label-tag.easy {
+    background-color: green;
+}
+
+.label-tag.medium {
+    background-color: orange;
+}
+
+.label-tag.hard {
+    background-color: red;
+}
+
+/* open add problem set button */
+.open-add-problem-set-btn {
+    padding: 12px 20px;
+    background-color: var(--background-color1);
+    color: var(--one-use-color);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.open-add-problem-set-btn:hover {
+    opacity: 0.85;
+}
+
+.open-add-problem-set-btn:active {
+    background-color: var(--background-color4);
+}
+
+/* topics dropdown */
+.topic-dropdown {
+    position: relative;
+}
+
+.topic-dropdown-header {
+    border: 1px solid #ccc;
+    padding: 10px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+
+.topic-dropdown-body {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 3px 3px 12px rgba(0,0,0,0.2);
+    padding: 10px;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+/* when dropdown is open or active */
+.topic-dropdown-body.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+
+.topic-search {
+    width: 100%;
+    padding: 8px 10px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+/* when search get's focus */
+.topic-search:focus {
+    border: 1px solid #ccc !important;
+    outline: none;
+}
+
+
+.topic-dropdown-body label {
+    display: block;
+    padding: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.topic-dropdown-body label:hover {
+    background: #f3f3f3;
+}
+
+/* for problem-set's topics  */
+.problem-set-topics .label-tag {
+    background-color: lightgray;
+    color: black;
+}
