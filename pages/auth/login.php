@@ -53,6 +53,7 @@
 
     </div>
 
-    <script src="../../scripts/auth/login.js?v=<?php echo time(); ?>"></script>
+    <!-- login js -->
+    <script type="module" src="/php_easy/scripts/auth/login.js?v=<?php echo time(); ?>"></script>
 </body>
 </html>
