@@ -215,6 +215,209 @@
         </form>
     </div>
 
+    <!-- View Problem Set Modal -->
+    <div id="viewProblemSetModal" class="modal modal-lg">
+
+        <!-- Header -->
+        <div class="modal-header">
+            <h2 class="modal-title">Problem Set Details</h2>
+            <span class="modal-close js-close-view-modal">×</span>
+        </div>
+
+        <!-- Body -->
+        <div class="modal-body">
+
+            <!-- Title -->
+            <div class="view-section">
+                <h3 class="view-title js-view-title">
+                    Two Sum Problem
+                </h3>
+            </div>
+
+            <!-- Description -->
+            <div class="view-section">
+                <p class="view-description js-view-description">
+                    Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+                </p>
+            </div>
+
+            <!-- Meta Info -->
+            <div class="view-meta-grid">
+
+                <!-- Difficulty -->
+                <div class="difficulty-section">
+                    <span class="view-label">Difficulty</span>
+                    <span class="label-tag js-view-difficulty">Medium</span>
+                </div>
+
+                <!-- Topics -->
+                <div>
+                    <span class="view-label">Topics</span>
+                    <div class="view-topics js-view-topics problem-set-topics">
+                        <span class="label-tag">Array</span>
+                        <span class="label-tag">Hash Map</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Sample IO -->
+            <div class="view-io-grid">
+
+                <div>
+                    <span class="view-label">Sample Input</span>
+                    <pre class="view-code js-view-input">
+                       nums = [2,7,11,15], target = 9
+                    </pre>
+                </div>
+
+                <div>
+                    <span class="view-label">Sample Output</span>
+                    <pre class="view-code js-view-output">
+                       [0,1]
+                    </pre>
+                </div>
+
+            </div>
+
+            <!-- Hints -->
+            <div class="view-section">
+                <span class="view-label">Hints</span>
+                <p class="view-hints js-view-hints">
+                    Use a hash map to store visited numbers.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- update/edit Problem Set Modal -->
+    <div id="updateProblemSetModal" class="modal modal-lg">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <h2 class="modal-title">Update Problem Set</h2>
+            <span class="modal-close js-close-update-modal">×</span>
+            <input class="js-update-ps-id" hidden/>
+        </div>
+
+        <!-- Modal Body (Scrollable) -->
+        <div class="modal-body update-problemset-modal-body ">
+
+            <!-- SECTION 1: CORE UPDATE DATA -->
+            <form id="updateProblemSetForm" class="modal-section-box">
+
+                <h4 class="section-heading">Basic Details</h4>
+
+                <div class="modal-section">
+                    <label>Title</label>
+                    <input type="text" class="modal-input js-ps-update-title" />
+                </div>
+
+                <div class="modal-section">
+                    <label>Description</label>
+                    <textarea class="modal-textarea js-ps-update-description"></textarea>
+                </div>
+
+                <div class="modal-section modal-grid-2">
+                    <div>
+                        <label>Difficulty</label>
+                        <select class="modal-input js-ps-update-difficulty">
+                            <option value="">Select</option>
+                            <option value="easy">easy</option>
+                            <option value="medium">medium</option>
+                            <option value="hard">hard</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="modal-section modal-grid-2">
+                    <div>
+                        <label>Sample Input</label>
+                        <textarea class="modal-textarea js-ps-update-sample-input"></textarea>
+                    </div>
+                    <div>
+                        <label>Sample Output</label>
+                        <textarea class="modal-textarea js-ps-update-sample-output"></textarea>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <label>Hints</label>
+                    <textarea class="modal-textarea js-ps-update-hintsText"></textarea>
+                </div>
+
+                <button type="submit" class="update-primary-btn js-update-ps-btn">
+                    Save Changes
+                </button>
+
+            </form>
+
+            
+            <!-- SECTION 2: TOPICS DATA (ADD NEW TO EXISTING TOPICS) -->
+            <div class="modal-section-box">
+
+                <h4 class="section-heading">Add Topics</h4>
+
+                <!-- Topic Dropdown (Reuse existing component) -->
+                <div class="modal-section">
+                    <label>Select Topics</label>
+
+                    <div class="topic-dropdown">
+                        <div class="topic-dropdown-header js-topic-toggle">
+                            <span class="selected-topics-text">
+                                Select Topics
+                            </span>
+                            <span class="dropdown-arrow">▾</span>
+                        </div>
+
+                        <div class="topic-dropdown-body js-topic-dropdown">
+                            <input 
+                                type="text"
+                                class="topic-search js-topic-search"
+                                placeholder="Search topics..."
+                            />
+
+                            <div class="topic-list js-topic-list">
+                                <!-- dynamically rendered -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="update-primary-btn js-add-new-topics-btn">
+                    Add Selected Topics
+                </button>
+
+            </div>
+
+            
+            <!-- SECTION 3: TOPICS DATA (REMOVE EXISTING TOPICS) -->
+            <div class="modal-section-box">
+
+                <h4 class="section-heading">Remove Topics</h4>
+
+                <div class="assigned-topics js-assigned-topics">
+                    <!-- Example -->
+                    <!--
+                    <span class="label-tag">
+                        Arrays
+                        <span class="remove-topic js-remove-topic" data-topic-id="3">🗑</span>
+                    </span>
+                    -->
+                </div>
+
+                <!-- save changes -->
+                <button class="update-danger-btn js-save-deleted-topics-btn">
+                    delete topics
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+
     <!-- footer section -->
     <?php require_once(FILE_PATH . "/components/admin/admin_footer.php") ?>
 
