@@ -53,6 +53,7 @@
 /* topics dropdown */
 .topic-dropdown {
     position: relative;
+    margin-top: 14px;
 }
 
 .topic-dropdown-header {
@@ -120,7 +121,9 @@
 }
 
 /* for problem-set's topics  */
-.problem-set-topics .label-tag {
+/* & for assigned topics set */
+.problem-set-topics .label-tag,
+.assigned-topics .label-tag {
     background-color: lightgray;
     color: black;
 }
