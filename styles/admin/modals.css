@@ -26,6 +26,7 @@
     z-index: 1001;
 }
 
+
 .modal-title {
     font-size: 22px;
     font-weight: 600;
@@ -163,4 +164,153 @@
     padding: 6px 10px;
     border-radius: 8px;
     font-size: 14px;
+}
+
+/* for view problem-set modal */
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    max-height: 75vh;
+    overflow-y: auto;
+}
+
+/* Title */
+.view-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--two-use-color);
+}
+
+/* Description */
+.view-description {
+    font-size: 15px;
+    line-height: 1.5;
+    color: #333;
+}
+
+/* Section wrapper */
+.view-section {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* Label */
+.view-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #666;
+    text-transform: uppercase;
+}
+
+/* Meta grid */
+.view-meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 16px;
+    align-items: start;
+}
+
+/* difficulty section */
+.view-meta-grid .difficulty-section {
+    display: flex;
+    flex-direction: column;
+}
+
+/* IO grid */
+.view-io-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+/* Code blocks */
+.view-code {
+    background: #f5f5f5;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 14px;
+    font-family: monospace;
+    white-space: pre-wrap;
+}
+
+/* Hints */
+.view-hints {
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+
+/* for update problemset modal */
+.update-problemset-modal-body {
+    gap: 22px !important;
+}
+
+.update-primary-btn {
+  width: auto;
+  padding: 10px;
+  background: rgb(56, 220, 34);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  float: right;
+}
+
+.update-danger-btn {
+  width: auto;
+  padding: 10px;
+  background: crimson;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  float: right;
+}
+
+/* section wrapper */
+.modal-section-box {
+    padding: 16px;
+    border-radius: 14px;
+    background: #f9f9f9;
+}
+
+/* section heading */
+.section-heading {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--two-use-color);
+}
+
+/* assigned topics list */
+.assigned-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* remove icon */
+.remove-topic {
+    margin-left: 6px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.remove-topic:hover {
+    color: red;
+}
+
+/* topic marked for deletion */
+.label-tag.pending-delete {
+    background-color: #ffe5e5;
+    color: #a10000;
+    text-decoration: line-through;
+}
+
+/* Section 3: delete btn */
+.js-save-deleted-topics-btn {
+    margin-top: 12px;
+    background: #d9534f;
 }
