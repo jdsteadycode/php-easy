@@ -1,0 +1,43 @@
+/* sub category section */
+.sub-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+/* individual sub-category tag */
+.sub-tag {
+    background-color: #e8e4ff;
+    color: #3f0097;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    white-space: nowrap;
+}
+
+/* empty state */
+.sub-empty {
+    color: #999;
+    font-size: 14px;
+}
+
+/* for open add categories btn (for modal) */
+.open-add-categories-btn {
+    padding: 12px 20px;
+    background-color: var(--background-color1);
+    color: var(--one-use-color);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.open-add-categories-btn:hover {
+    opacity: 0.85;
+}
+
+.open-add-categories-btn:active {
+    background-color: var(--background-color4);
+}

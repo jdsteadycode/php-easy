@@ -225,6 +225,13 @@
     gap: 12px;
 }
 
+/* date grid */
+.view-date-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
 /* Code blocks */
 .view-code {
     background: #f5f5f5;
@@ -295,7 +302,7 @@
 .remove-topic {
     margin-left: 6px;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 16px;
 }
 
 .remove-topic:hover {
@@ -313,4 +320,9 @@
 .js-save-deleted-topics-btn {
     margin-top: 12px;
     background: #d9534f;
+}
+
+/* for delete problem set modal's delete button */
+#deleteProblemSetModal .js-confirm-delete-problemset {
+    width: 100% !important;
 }
