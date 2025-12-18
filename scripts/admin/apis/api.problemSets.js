@@ -209,5 +209,101 @@ export const ProblemSetsApi = {
             // when request fails..
             return {"status": false, "message": "network_error"};
         });
+    },
+
+    // () -> remove the assigned topics from problem..
+    removeAssignedTopicsFromProblemSet: async function(problemSetId, topic_ids) {
+
+        // set the data to send..
+        const data = {
+            "problemSetId": problemSetId,
+            "topicIds": topic_ids
+        }
+
+        // make an php api call..
+        return fetch(
+            "http://localhost:8888/php_easy/apis/admin/problem_set/update/unassign_topics.php",
+            {
+                "method": "POST",
+                "body": JSON.stringify(data)
+            }
+        )
+        // handle the response..
+        .then(function (response) {
+
+            // when response is not successful.. 
+            if(!response.ok) return {"status": false, "message": "http_error"};
+
+            // return response.text();
+
+            // get the parsed json response..
+            return response.json();
+        })
+        // get the parsed json data..
+        // .then(function (data) {
+
+        //     // check log..
+        //     console.log(data);
+        // })
+        // re-render the topics
+        // .then(initManageTopics)
+
+        // when error arises..
+        .catch(function (error) {
+
+            // check log..
+            console.log(error);
+
+            // when request fails..
+            return {"status": false, "message": "network_error"};
+        });
+    },
+
+    // () -> delete the existing problem set.
+    deleteProblemSet: async function(problemSetId = "") {
+
+        // set the data to send..
+        const data = {
+            "problemSetId": problemSetId,
+            "__method": "DELETE"
+        }
+
+        // make an php api call..
+        return fetch(
+            "http://localhost:8888/php_easy/apis/admin/problem_set/delete_problem_set.php",
+            {
+                "method": "POST",
+                "body": JSON.stringify(data)
+            }
+        )
+        // handle the response..
+        .then(function (response) {
+
+            // when response is not successful.. 
+            if(!response.ok) return {"status": false, "message": "http_error"};
+
+            // return response.text();
+
+            // get the parsed json response..
+            return response.json();
+        })
+        // get the parsed json data..
+        // .then(function (data) {
+
+        //     // check log..
+        //     console.log(data);
+        // })
+        // re-render the topics
+        // .then(initManageTopics)
+
+        // when error arises..
+        .catch(function (error) {
+
+            // check log..
+            console.log(error);
+
+            // when request fails..
+            return {"status": false, "message": "network_error"};
+        });
     }
 };

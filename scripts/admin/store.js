@@ -3,6 +3,7 @@ export const AdminStore = {
     // initial state for data..
     topics: [],
     problemSets: [],
+    categories: [],
     currentUserId: null,
 
     // () -> set the current user id..

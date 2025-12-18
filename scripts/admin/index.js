@@ -3,6 +3,7 @@ import {AuthActions} from "/php_easy/scripts/auth.js";
 import {AdminStore} from "/php_easy/scripts/admin/store.js";
 import {initManageTopics} from "/php_easy/scripts/admin/pages/page.topics.js";
 import {initManageProblemSets} from "/php_easy/scripts/admin/pages/page.problemSet.js";
+import {initManageCategories} from "/php_easy/scripts/admin/pages/page.categories.js";
 import {initManageLogout} from "/php_easy/scripts/admin/pages/page.logout.js";
 import {initManageDashboard} from "/php_easy/scripts/admin/pages/page.dashboard.js";
 import {Modal} from "/php_easy/scripts/admin/modals/modals.js";
@@ -14,7 +15,7 @@ window.addEventListener("load", async function(event) {
     const verificationStatus = await AuthActions.verifyOnLoad();
 
     // if un-authenticated..
-    if (verificationStatus["message"] !== "authenticated" || verificationStatus["status"] === false) {
+    if (verificationStatus["message"] !== "authorized" || verificationStatus["status"] === false) {
 
         // redirect the client back to login page..
         window.location.href = `${window.location.origin}/php_easy/pages/auth/login.php`;
@@ -78,9 +79,6 @@ navoptions.forEach(function (navOption) {
         // check log..
         // console.log(navOptionText);
 
-        // check log..
-        // console.log(loadHTML(navOptionText));
-
         // add the class..
         // make the current nav-option active
         navOption.classList.add("nav-option-active");
@@ -116,6 +114,13 @@ function handlePageContent(page) {
 
             // handle the dashboard view..
             initManageDashboard();
+            break;
+
+        // when it is categories..
+        case `Manage Categories`:
+
+            // handle the categories view..
+            initManageCategories();
             break;
 
         // when it is manage problem sets..

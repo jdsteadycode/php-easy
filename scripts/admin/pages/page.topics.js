@@ -31,7 +31,7 @@
                             class="js-view-btn" 
                             data-topic-id="${topic.id}"
                         >
-                            🔍
+                            👁️
                         </span> 
                         ${topic.deleted_at
                     ?
@@ -55,7 +55,7 @@
                                 class="js-delete-btn"
                                 data-topic-id="${topic.id}"
                             >
-                            ❌
+                            🗑️
                             </span>
                         `
                 }
@@ -101,6 +101,7 @@
             // show the error toast..
             document.querySelector(".js-error-msg").style.display = "block";
             document.querySelector(".js-error-msg").innerText = "topic is to be provided";
+            return;
         } else {
 
             // hide the error and clear the error
@@ -112,7 +113,28 @@
         // console.log(topicInput);
 
         // add the topic
-        await TopicsApi.addTopic(topicInput);
+        const addResponse = await TopicsApi.addTopic(topicInput);
+
+        // check log..
+        // console.log(addResponse);
+
+        // when topic already exists..
+        if(addResponse.status === false) {
+
+            // show the error toast..
+            document.querySelector(".js-error-msg").style.display = "block";
+            document.querySelector(".js-error-msg").innerText = "topic already exists";
+
+            // after 1.8 seconds..
+            setTimeout(function() {
+
+                // hide the error toast..
+                document.querySelector(".js-error-msg").style.display = "none";
+                document.querySelector(".js-error-msg").innerText = "";
+            }, 1800);
+            return;
+        }
+
 
         // get the topics again..
         const response = await TopicsApi.getTopics();
@@ -139,6 +161,9 @@
 
         // get the topics..
         const response = await TopicsApi.getTopics();
+
+        // check log
+        console.log(response);
         
         // set the topics state..
         // save the topics..

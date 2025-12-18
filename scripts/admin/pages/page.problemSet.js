@@ -23,8 +23,15 @@ function renderProblemSets() {
         // accumulate each problem..
         document.querySelector(".js-problemset-items").innerHTML += `
             <div class="item1" key="${index + 1}">
-                <h3 class="t-op-nextlvl">1</h3>
-                <h3 class="t-op-nextlvl">${problemSet.title}</h3>
+                <h3 class="t-op-nextlvl">${index + 1}</h3>
+                <h3 class="t-op-nextlvl">
+                    ${problemSet.deleted_at == null 
+                        ?
+                        `${problemSet.title}`
+                        :
+                        `${problemSet.title} <span class="deleted-text">deleted</span>`
+                    }
+                </h3>
 
                 <h3 class="t-op-nextlvl problem-set-topics">
                     ${problemSet?.topics.map(function(topic, index) {
@@ -55,14 +62,28 @@ function renderProblemSets() {
                         class="js-problemset-view"
                         data-problemsetid="${problemSet.id}"
                     >👁️</span>
-                    <span 
-                        class="js-problemset-edit"
-                        data-problemsetid="${problemSet.id}"
-                    >✏️</span>
-                    <span 
-                        class="js-problemset-delete"
-                        data-problemsetid="${problemSet.id}"
-                    >🗑️</span>
+                    ${problemSet.deleted_at == null
+                        ?
+                      `
+                        <span 
+                            class="js-problemset-edit"
+                            data-problemsetid="${problemSet.id}"
+                        >✏️</span>
+                      `
+                      :
+                      ``
+                    }
+                    ${problemSet.deleted_at == null
+                        ?
+                        `
+                         <span 
+                            class="js-problemset-delete"
+                            data-problemsetid="${problemSet.id}"
+                         >🗑️</span>
+                        `
+                        :
+                        ``
+                    }
                 </div>
             </div>
         `;
@@ -169,6 +190,14 @@ function handleProblemSetActions(event) {
         return;
     }
 
+    // when delete action is clicked..
+    if(event.target.classList.contains("js-problemset-delete")) {
+
+        // open the delete confirmation modal for problem set..
+        handleOpenDeleteConfProblemSetModal(event.target);
+        return;
+    }
+
 
     return;
 }
@@ -258,6 +287,41 @@ function handleUpdateSectionChanges(event) {
         handleAddNewTopicsToProblemSet(event);
         return;
     }
+
+    // when the delete topics button is clicked..
+    if(event.target.classList.contains("js-save-deleted-topics-btn")) {
+
+        // check log..
+        // console.log("topics removal is initiated");
+
+        // handle the topics removal from problem set associated..
+        handleTopcisRemovalFromProblemSet(event);
+        return;
+    }
+}
+
+// () -> attach the delete section events..
+function attachDeleteSectionEvents(modal) {
+
+    // attach the events on click
+    modal.onclick = handleDeleteSectionEvents;
+}
+
+// () -> handle the delete section events..
+function handleDeleteSectionEvents(event) {
+
+    // check if delete action button is clicked..
+    if(event.target.classList.contains("js-confirm-delete-problemset")) {
+
+        // check log..
+        // console.log("final delete is initiated");
+
+        // make the problem set delete..
+        handleDeleteProblemSet(event);
+        return;
+    }
+
+    return;
 }
 
 
@@ -348,11 +412,26 @@ function handleOpenViewProblemSetModal(btn) {
     });
 
     // sample input and output blocks for problemset..
-    document.querySelector(".js-view-input").innerText = problemSet?.sample_input;
-    document.querySelector(".js-view-output").innerText = problemSet?.sample_output;
+    document.querySelector(".js-view-input").innerText = problemSet?.sample_input ? problemSet?.sample_input : "No sample input available.";
+    document.querySelector(".js-view-output").innerText = problemSet?.sample_output ? problemSet?.sample_output : "No sample output available.";
+
+    // for updated at and deleted at..
+    document.querySelector(".js-view-updated-at").innerText =
+    problemSet?.updated_at 
+    ?
+    (new Date(problemSet?.updated_at).toDateString() + " " + new Date(problemSet?.updated_at).toLocaleTimeString()) 
+    : 
+    "-";
+    document.querySelector(".js-view-deleted-at").innerText =
+    problemSet?.deleted_at 
+    ?
+    (new Date(problemSet?.deleted_at).toDateString() + " " + new Date(problemSet?.deleted_at).toLocaleTimeString()) 
+    : 
+    "-";
 
     // for hintsText available for problemset..
-    document.querySelector(".js-view-hints").innerText = problemSet?.hints;
+    document.querySelector(".js-view-hints").innerText = problemSet?.hints ? problemSet?.hints : "No hints available.";
+
 
     // at the end, open up the modal..
     Modal.openModal("viewProblemSetModal");
@@ -378,7 +457,7 @@ function handleOpenUpdateProblemSetModal(btn) {
     const problemSet = AdminStore.problemSets.find(problemset => problemset.id == problemSetId);
 
     // check log..
-    console.log(problemSet);
+    // console.log(problemSet);
 
     // fill the data in the modal..
 
@@ -418,6 +497,32 @@ function handleOpenUpdateProblemSetModal(btn) {
 
     // at the end, open up the modal..
     Modal.openModal("updateProblemSetModal");
+}
+
+// () -> to open the delete confirmaton modal for problem set..
+function handleOpenDeleteConfProblemSetModal(btn) {
+
+    // check log..
+    // console.log(btn);
+
+    // modal to open..
+    const modal = document.querySelector("#deleteProblemSetModal");
+
+    // get the problem set currently needs to be opened..
+    const problemSet = AdminStore.problemSets.find(ps => ps.id == btn.dataset.problemsetid);
+
+    // check log..
+    // console.log(problemSet);
+
+    // fill the data required..
+    document.querySelector(".js-ps-delete-ps-id").value = problemSet.id ?? "";
+    document.querySelector(".js-delete-ps-title").innerText = problemSet.title ?? "";
+
+    // attach the events to modal..
+    attachDeleteSectionEvents(modal);
+
+    // open the modal..
+    Modal.openModal("deleteProblemSetModal");
 }
 
 // () -> handle the searching of topics
@@ -591,7 +696,7 @@ async function handleAddProblemSet(event) {
 async function handleUpdateProblemSet(event) {
 
     // check log..
-    console.log("update is initiated");
+    // console.log("update is initiated");
 
     // get the data for update..
     const problemSetId = document.querySelector(".js-update-ps-id").value.trim();
@@ -607,6 +712,9 @@ async function handleUpdateProblemSet(event) {
 
     // update the btn text..
     event.target.innerText = "updating..";
+
+    // do disable th btn..
+    event.target.setAttribute("disabled", "");
 
     // initiate the update..
     await ProblemSetsApi.updateProblemSet(
@@ -639,6 +747,9 @@ async function handleUpdateProblemSet(event) {
 
         // reset the button text..
         event.target.innerText = "Save Changes";
+
+        // now enable it..
+        event.target.removeAttribute("disabled");
     }, 1500);
 }
 
@@ -657,6 +768,12 @@ async function handleAddNewTopicsToProblemSet(event) {
 
     // check log..
     // console.log(problemSetId, topicIds);
+
+    // update the inner text of button..
+    event.target.innerText = "assigning..";
+    
+    // disable the button..
+    event.target.setAttribute("disabled", "");
 
     // initiate the update..
     await ProblemSetsApi.assignNewTopicsToProblemSet(problemSetId, topicIds);
@@ -677,6 +794,95 @@ async function handleAddNewTopicsToProblemSet(event) {
         Modal.closeModal(event);
 
         // reset the button text..
-        // event.target.innerText = "Save Changes";
+        event.target.innerText = "Add selected topics";
+
+        // now enable it..
+        event.target.removeAttribute("disabled");
+    }, 1500);
+}
+
+// () -> handle topics removal from problem set..
+async function handleTopcisRemovalFromProblemSet(event) {
+
+    // get the current problem set id..
+    const problemSetId = document.querySelector(".js-update-ps-id").value.trim();
+
+    // get the topic-ids for removal || un-assignment from the problem set..
+    const topicIds = [...unAssignedTopics];
+
+    // check log..
+    console.log(problemSetId, topicIds);
+
+    // update the innertext..
+    event.target.innerText = "un-assigning...";
+
+    // disable it
+    event.target.setAttribute("disabled", "");
+
+    // un-assign the intended topics..
+    await ProblemSetsApi.removeAssignedTopicsFromProblemSet(problemSetId, topicIds);
+
+    // get the problem sets..
+    const response = await ProblemSetsApi.getProblemSets();
+
+    // update the state..
+    AdminStore.problemSets = response.data;
+
+    // re-render the problem-sets..
+    renderProblemSets();
+
+    // after 1.5 seconds..
+    setTimeout(function() {
+
+        // close the modal..
+        Modal.closeModal(event);
+
+        // reset the button text..
+        event.target.innerText = "delete topics";
+
+        // now enable it..
+        event.target.removeAttribute("disabled");
+    }, 1500);
+
+}
+
+// () -> handle the problem set deletion.. 
+async function handleDeleteProblemSet(event) {
+
+    // grab the data..
+    const problemSetId = document.querySelector(".js-ps-delete-ps-id").value.trim() ?? "";
+
+    // check log..
+    // console.log(`problem: ${problemSetId} is now deleted..`);
+
+    // update the innertext..
+    event.target.innerText = "deleting...";
+
+    // disable it
+    event.target.setAttribute("disabled", "");
+
+    // make the problem set delete..
+    await ProblemSetsApi.deleteProblemSet(problemSetId);
+
+    // get the problem sets..
+    const response = await ProblemSetsApi.getProblemSets();
+
+    // update the state..
+    AdminStore.problemSets = response.data;
+
+    // re-render the problem-sets..
+    renderProblemSets();
+
+    // after 1.5 seconds..
+    setTimeout(function() {
+
+        // close the modal..
+        Modal.closeModal(event);
+
+        // reset the button text..
+        event.target.innerText = "Delete";
+
+        // now enable it..
+        event.target.removeAttribute("disabled");
     }, 1500);
 }
