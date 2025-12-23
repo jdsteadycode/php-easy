@@ -144,6 +144,21 @@ footer  {
     z-index: 1;
 }
 
+/* for empty content message */
+.empty-content-section {
+    display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.empty-content-section h2 {
+    margin-top: 120px;
+}
+
+.empty-content-section p {
+    margin-top: 5px;
+}
+
 /* dp emoji for alternative to image */
 .dp-emoji {
     font-size: 30px;
@@ -199,8 +214,8 @@ footer  {
 }
 
 .navcontainer {
-    height: calc(100vh - 140px);    /* adjust between the footer and header sections */
-    width: 250px;
+    /* height: calc(100vh - 140px);    adjust between the footer and header sections */
+    width: 350px;
     position: relative;
     overflow-y: scroll;
     overflow-x: hidden;

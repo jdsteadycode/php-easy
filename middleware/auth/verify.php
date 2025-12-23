@@ -5,36 +5,48 @@
     // set the content type for client..
     header("Content-Type: application/json");
 
-    // verify the user..
-    if(!isset($_SESSION["user_id"])) {
-
-        // not authenticated..
-        echo json_encode([
-            "message" => "un-authenticated",
-            "status" => false
-        ]);
-        exit();
-    }
-
-    // according to the user's role..
+    // verify the user?
     if($_SESSION["user_role"] === "admin") {
+
+        // set the response code..
+        http_response_code(200);
 
         // send the response to client..
         echo json_encode([
-            "message" => "authenticated",
+            "message" => "authorized",
             "status" => true,
             "user_id" => $_SESSION["user_id"],
             "is_admin" => true
         ]);
         exit();
     }
-
-    // send the response to client..
+ 
     // when normal user..
-    echo json_encode([
-            "message" => "authenticated",
-            "user_id" => $_SESSION["user_id"],
-            "status" => true,
-            "is_admin" => false
-    ]);
-    exit();
+    else if($_SESSION["user_role"] === "user") {
+
+        // set the response code..
+        http_response_code(200);
+
+        // send the response to client..
+        echo json_encode([
+                "message" => "authorized",
+                "user_id" => $_SESSION["user_id"],
+                "status" => true,
+                "is_admin" => false
+        ]);
+        exit();
+    }
+
+    // otherwise..
+    else {
+
+        // set the response code..
+        http_response_code(403);
+
+        // send the response to client..
+        echo json_encode([
+                "message" => "un-authorized",
+                "status" => false,
+        ]);
+        exit();
+    }

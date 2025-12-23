@@ -29,11 +29,33 @@
             exit();
         }
 
+        // instantiate the class..
+        $topic = new TopicController();
+
+        // check for duplicate topic..
+        // get all topic names..
+        $topic_names = $topic->all_topic_names(
+            "SELECT name FROM topics"
+        );
+
+        // check if duplicate..
+        if(TopicValidator::is_duplicate_topic($topic_names, $name)) {
+
+            // set the response code..
+            http_response_code(422);
+
+            // send response to client..
+            echo json_encode([
+                "message" => "OOPS! topic already exists",
+                "status" => false
+            ]);
+            exit();
+        }
+
         // check log..
         // echo json_encode(["date" => date("d-m-y h:i:s")]);
 
         // handle topic addon..
-        $topic = new TopicController();
         $added = $topic->add_topic(
             "INSERT INTO topics (name, created_at) VALUES (:name, :created_at)",
             [
@@ -45,6 +67,9 @@
         // check if topic added..
         if($added != FALSE) {
 
+            // set the response code..
+            http_response_code(200);
+
             // send the response to client..
             echo json_encode([
                 "message" => "$name was recently added..",
@@ -53,6 +78,9 @@
             exit();
         }
         else {
+
+            // set the response code..
+            http_response_code(500);
 
             // otherwise..
             echo json_encode([
@@ -63,6 +91,9 @@
         }
     }
     else {
+
+        // set the response code..
+        http_response_code(405);
 
         // send response to client..
         echo json_encode([

@@ -128,7 +128,7 @@
             
         }
 
-        // () -> handle updation of existing category (for video/ playlist..)
+        // () -> handle deletion of existing category (for video/ playlist..)
          public function deleteCategory($categoryId) {
 
             // intial statement and parameters..
@@ -176,7 +176,7 @@
                     parent.created_at,
                     parent.updated_at,
                     parent.deleted_at,
-                    GROUP_CONCAT(child.`name` ORDER BY child.name SEPARATOR ', ') AS child_categories,
+                    GROUP_CONCAT(child.`name` ORDER BY child.id SEPARATOR ', ') AS child_categories,
                     GROUP_CONCAT(child.`id` ORDER BY child.id SEPARATOR ', ') AS child_categories_ids
                 FROM categories parent
                 LEFT JOIN categories child ON 
@@ -196,5 +196,5 @@
 
             // get all rows, on success..
             return $stmt->fetchAll();
-        }
+        }   
     }

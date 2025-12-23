@@ -1,7 +1,5 @@
 // html for manage problem_sets
 export const manageProblemSetsHTML = `
-    <div class="main">
-
         <!-- info container -->
         <div class="info-container">
             <h2 class="info-heading">Create a Problem Set</h2>
@@ -42,5 +40,4 @@ export const manageProblemSetsHTML = `
                 </div>
             </div>
         </div>
-    </div>
 `;

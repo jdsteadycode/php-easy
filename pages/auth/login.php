@@ -9,15 +9,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login – Phpeasy</title>
 
+    <!-- main login css -->
     <link 
         rel="stylesheet"
         href="../../styles/auth/auth.css?v=<?php echo time(); ?>"
     />
+
+    <!-- toast css -->
+     <link 
+        rel="stylesheet"
+        href="../../styles/common/toasts.css?v=<?php echo time(); ?>"
+     />
 </head>
 <body>
 
     <!-- login main container -->
-    <div class="login-container">
+    <section class="login-container">
 
         <!-- login box -->
         <div class="login-card">
@@ -43,15 +50,18 @@
                 </button>
 
                 <!-- handle error toast -->
-                <p class="error-msg js-error-msg" id="errorMsg"></p>
+                <!-- <p class="error-msg js-error-msg" id="errorMsg"></p> -->
 
                 <!-- handle success toast -->
-                <p class="success-msg js-success-msg" id="successMsg"></p>
+                <!-- <p class="success-msg js-success-msg" id="successMsg"></p> -->
             </form>
 
         </div>
 
-    </div>
+    </section>
+
+    <!-- toast-container -->
+     <section id="toast-container"></section>
 
     <!-- login js -->
     <script type="module" src="/php_easy/scripts/auth/login.js?v=<?php echo time(); ?>"></script>

@@ -10,31 +10,26 @@
     require(dirname(__DIR__, 3) . "/config/config.php");
 
     // get the Admin Controller module..
-    require(FILE_PATH . "/controllers/admin/CategoriesController.php");
+    require(FILE_PATH . "/controllers/admin/VideoAndPlaylistController.php");
 
     // instantiate the class..
-    $controller = new CategoriesController();
+    $controller = new VideoAndPlaylistController();
 
     // check the request method..
-    if($_SERVER["REQUEST_METHOD"] == "PATCH") {
+    if($_SERVER["REQUEST_METHOD"] == "GET") {
 
-        // get the data..
-        $incomingData = file_get_contents("php://input");
-
-        // sanitize the data from json  -> php native array..
-        $data = json_decode($incomingData, TRUE);
-
-        // handle new category addon
-        $response = $controller->handleUpdateCategory(
-            $data["categoryId"],
-            $data["name"]
-        );
-
+        // get all videos..
+        $response = $controller->handleAllVideos();
+    
         // set the response code..
         http_response_code(200);
 
         // check log..
+        // var_dump($categoryIds);
+
+        // check log..
         echo json_encode($response);
+        exit();
     
     }
     else {

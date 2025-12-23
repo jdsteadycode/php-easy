@@ -3,7 +3,6 @@
 
 // html for dashboard..
 export const dashboardHTML = `
-    <div class="main">
             <!-- <div class="searchbar2">
                 <input type="text" name="" id="" placeholder="Search" />
                 <div class="searchbtn">
@@ -115,5 +114,4 @@ export const dashboardHTML = `
                     </div>
                 </div>
             </div>
-        </div>
 `;

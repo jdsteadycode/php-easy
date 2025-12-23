@@ -6,6 +6,7 @@ import {initManageProblemSets} from "/php_easy/scripts/admin/pages/page.problemS
 import {initManageCategories} from "/php_easy/scripts/admin/pages/page.categories.js";
 import {initManageLogout} from "/php_easy/scripts/admin/pages/page.logout.js";
 import {initManageDashboard} from "/php_easy/scripts/admin/pages/page.dashboard.js";
+import {initmanageVideosAndPlaylists} from "/php_easy/scripts/admin/pages/page.videosandplaylist.js";
 import {Modal} from "/php_easy/scripts/admin/modals/modals.js";
 
 // when document is loaded..
@@ -128,6 +129,13 @@ function handlePageContent(page) {
 
             // handle the problem sets view..
             initManageProblemSets();
+            break;
+
+        // when it is manage videos and playlists..
+        case `Manage Videos / Playlists`:
+
+            // handle the videos and playlists view..
+            initmanageVideosAndPlaylists();
             break;
 
         // when it is logout..

@@ -1,7 +1,11 @@
 // grab the modules..
 import {initManageDashboard} from "/php_easy/scripts/admin/pages/page.dashboard.js";
 import {Modal} from "/php_easy/scripts/admin/modals/modals.js";
+import {Toast} from "/php_easy/scripts/common/toasts.js";
 import {AdminStore} from "/php_easy/scripts/admin/store.js";
+
+// check log..
+// console.log(Toast);
 
 // A central Auth level Apis..
 export const AuthApi = {
@@ -176,21 +180,31 @@ export const AuthActions = {
             // grab the data from api..
             const data = await AuthApi.login(userData);
 
+
             // when invalid credentials..
             if(data["message"] === "invalid credentials") {
 
                 // show the toast..
-                document.querySelector(".js-error-msg").style.display = "block";
-                document.querySelector(".js-error-msg").innerText = data.message;
+                // document.querySelector(".js-error-msg").style.display = "block";
+                // document.querySelector(".js-error-msg").innerText = data.message;
 
-                // just after 1.5 seconds..
-                setTimeout(function() {
+                // // just after 1.5 seconds..
+                // setTimeout(function() {
 
-                    // show the toast..
-                    document.querySelector(".js-error-msg").innerText = "";
-                    document.querySelector(".js-error-msg").style.display = "none";
+                //     // show the toast..
+                //     document.querySelector(".js-error-msg").innerText = "";
+                //     document.querySelector(".js-error-msg").style.display = "none";
 
-                }, 1500);
+                // }, 1500);
+
+                // show the toast..
+                Toast.show({
+                    "title": "Error",
+                    "message": data["message"],
+                    "type": "error",
+                    "duration": 3000
+                });
+
                 return;
             }
 
@@ -199,36 +213,52 @@ export const AuthActions = {
             if(data["message"] === "successful login" && data["status"]) {
 
                 // show the toast..
-                document.querySelector(".js-success-msg").innerText = ``;
-                document.querySelector(".js-success-msg").style.display = "block";
-                document.querySelector(".js-success-msg").innerText = data.message;
+                // document.querySelector(".js-success-msg").innerText = ``;
+                // document.querySelector(".js-success-msg").style.display = "block";
+                // document.querySelector(".js-success-msg").innerText = data.message;
 
 
                 // after 1.5 seconds..
+                // setTimeout(function() {
+
+                //     // clear the toast..
+                //     document.querySelector(".js-success-msg").innerText = ``;
+                //     document.querySelector(".js-success-msg").style.display = "none";
+
+
+                //     // handle the based on the role..
+                //     if(data["user_role"] === "admin") {
+
+                //         // check for path..
+                //         // console.log(window.location.origin);
+
+                //         // redirect the admin..
+                //         window.location.href = window.location.origin + `/php_easy/pages/admin/index.php`;
+                //         return;
+                //     }
+
+                //     // coming soon for user..
+                //      document.querySelector(".js-success-msg").innerText = "coming soon for users.."
+                //      document.querySelector(".js-success-msg").style.display = "block";
+
+                // }, 1500);
+
+
+                // show the toast..
+                await Toast.show({
+                    "title": "Success",
+                    "message": data["message"],
+                    "type": "success",
+                });
+
+                // after toasts goes of in 3 seconds..
                 setTimeout(function() {
 
-                    // clear the toast..
-                    document.querySelector(".js-success-msg").innerText = ``;
-                    document.querySelector(".js-success-msg").style.display = "none";
-
-
-                    // handle the based on the role..
-                    if(data["user_role"] === "admin") {
-
-                        // check for path..
-                        // console.log(window.location.origin);
-
-                        // redirect the admin..
-                        window.location.href = window.location.origin + `/php_easy/pages/admin/index.php`;
-                        return;
-                    }
-
-                    // coming soon for user..
-                    document.querySelector(".js-success-msg").innerText = "coming soon for users.."
-                    document.querySelector(".js-success-msg").style.display = "block";
-
-                }, 1500);
-
+                    // redirect the admin..
+                    window.location.href = window.location.origin + `/php_easy/pages/admin/index.php`;
+                }, 3500);
+                
+                return;
             }
             
         }
@@ -256,12 +286,20 @@ export const AuthActions = {
                 // log the message..
                 console.log(data.message + " " + data.status);
 
-                // after 1.5 second delay..
+                // show the toast..
+                Toast.show({
+                    "title": "Success",
+                    "message": data["message"],
+                    "type": "error",
+                    "duration": 3000
+                });
+
+                // after 3.5 second delay..
                 setTimeout(function () {
 
                     // redirect the client to login page..
                     window.location.href = `${window.location.origin}/php_easy/pages/auth/login.php`;
-                }, 1500);
+                }, 3500);
             }
         }
 

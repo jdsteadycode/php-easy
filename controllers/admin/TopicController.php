@@ -62,6 +62,44 @@
             // get number of topic which deleted or false (if ain't added)
             return $stmt ? $stmt->fetchAll() : false;
         }
+
+        // () -> handle getting all topic names..
+        public function all_topic_names($statement, $parameters = []) {
+
+            // execute the command..
+            $stmt = $this->db->executeCommandOrQuery($statement, $parameters);
+
+            // get number of topic which deleted or false (if ain't added)
+            return $stmt ? $stmt->fetchAll() : false;
+        }
+    }
+
+    // A Topic Validator..
+    class TopicValidator {
+        // () -> checks whether topic is duplicate..
+        public static function is_duplicate_topic($topics, $topic_to_check) {
+
+            // check log..
+            // var_dump($topic_to_check);
+
+            // initial state..
+            $duplicate = false;
+
+            // check..
+            for($i = 0; $i < count($topics); $i ++) {
+
+                // when duplicate name is encountered..
+                if($topics[$i]["name"] === trim($topic_to_check)) {
+
+                    // update the state..
+                    $duplicate = true;
+                    break;
+                }
+            }
+
+            // get the final state..
+            return $duplicate;
+        }
     }
 
     // important for sanitizing the current date and time..
@@ -110,5 +148,10 @@
     //     "SELECT * FROM topics"
     // );
 
-    // check log..
-    // var_dump($added);
+    // 5.
+    // get all topic names..
+    // $topic_names = $topic->all_topic_names(
+    //     "SELECT name FROM topics"
+    // );
+
+ 

@@ -1,0 +1,62 @@
+/* main parent container */
+.info-parent-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* video-container */
+.video-container {
+    max-width: 500px !important;
+}
+
+/* layout and space coverage for each video attributes like title, description etc... */
+.video-table-heading,
+.video-item {
+    grid-template-columns: .5fr 1fr 1.5fr 1fr 120px;
+}
+
+
+/* for each video's thumbnail */
+.video-thumb {
+    width: 60px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    background-color: #f1f1f1;
+}
+
+/* for each video's title */
+.video-title {
+    font-weight: 600;
+    color: #2c2c2c;
+}
+
+
+/* video related categories */
+/* .video-categories {
+    font-size: 13px;
+    color: #444;
+    line-height: 1.4;
+} */
+
+/* for each video's actions segment */
+.video-item .actions {
+    gap: 14px;
+}
+
+.video-item {
+    transition: background-color 0.15s, border-radius 0.15s;
+}
+
+/* when video item is hovered.. */
+.video-item:hover {
+    background-color: #f6f8ff;
+    border-radius: 8px;
+}
+
+
+/* playlist container */
+.playlist-container  {
+    max-width: 500px !important;
+}

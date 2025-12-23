@@ -1,10 +1,9 @@
 // html for manage categories..
 export const manageCategoriesHTML = `
-    <div class="main">
 
         <!-- info container -->
         <div class="info-container">
-            <h2 class="info-heading">Manage Categories</h2>
+            <h2 class="info-heading">Create some categories</h2>
             
             <p class="info-description">
                 Add some categories for the videos and also, sub categories for each category..
@@ -70,5 +69,4 @@ export const manageCategoriesHTML = `
                 </div>
             </div>
         </div>
-    </div>
 `;

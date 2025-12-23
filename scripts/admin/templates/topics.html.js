@@ -1,6 +1,5 @@
 // html for manage topics..
 export const manageTopicsHTML = `
-    <div class="main">
             <!-- <div class="searchbar2">
                 <input type="text" name="" id="" placeholder="Search" />
                 <div class="searchbtn">
@@ -65,5 +64,4 @@ export const manageTopicsHTML = `
                     </div>
                 </div>
             </div>
-        </div>
 `;
