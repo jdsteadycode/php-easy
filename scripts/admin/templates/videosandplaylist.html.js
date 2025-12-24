@@ -58,7 +58,6 @@ export const manageVideosAndPlaylistHTML = `
                         <h3 class="t-op-nextlvl">1</h3>
 
                         <img 
-                            src="/php_easy/uploads/videos/thumbnails/thumb_123.jpg"
                             class="video-thumb"
                             alt="thumbnail"
                         />
@@ -81,4 +80,55 @@ export const manageVideosAndPlaylistHTML = `
                 </div>
             </div>
         </div>
+
+        <!-- PLAYLISTS SECTION -->
+        <div class="main-content-container playlist-content-container">
+
+            <!-- header -->
+            <div class="main-content-header">
+                <h1 class="main-content-heading">Current Playlists</h1>
+            </div>
+
+            <!-- body -->
+            <div class="main-content-body">
+
+                <!-- table heading -->
+                <div class="main-content-topic-heading playlist-table-heading">
+                    <h3 class="t-op">No</h3>
+                    <h3 class="t-op">Playlist Name</h3>
+                    <h3 class="t-op">Videos</h3>
+                    <h3 class="t-op">Created at</h3>
+                    <h3 class="t-op">Actions</h3>
+                </div>
+
+                <!-- table rows -->
+                <div class="items js-playlists">
+
+                    <!-- ROW -->
+                    <div class="item1 playlist-item">
+                        <h3 class="t-op-nextlvl">1</h3>
+
+                        <h3 class="t-op-nextlvl playlist-title">
+                            PHP Fundamentals
+                        </h3>
+
+                        <h3 class="t-op-nextlvl playlist-video-count">
+                            12 videos
+                        </h3>
+
+                        <h3 class="t-op-nextlvl">
+                            22 Dec 2025
+                        </h3>
+
+                        <div class="actions">
+                            <span class="js-playlist-view">👁️</span>
+                            <span class="js-playlist-edit">✏️</span>
+                            <span class="js-playlist-delete">🗑️</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
 `;

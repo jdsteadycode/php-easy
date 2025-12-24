@@ -7,7 +7,7 @@
     date_default_timezone_set('Asia/Kolkata');
 
     // grab modules..
-    require(dirname(__DIR__, 3) . "/config/config.php");
+    require(dirname(__DIR__, 4) . "/config/config.php");
 
     // get the Admin Controller module..
     require(FILE_PATH . "/controllers/admin/VideoAndPlaylistController.php");
@@ -22,39 +22,27 @@
         $title = $_POST["title"] ?? "";
         $description = $_POST["description"] ?? "";
         $video_url = $_POST["videoUrl"] ?? "";
-        $uploadedBy = $_POST["uploadedBy"] ?? "";
-        $categoryIdsString = $_POST["categoryIds"] ?? [];
 
-        // get the thumbnail file..
-        $thumbnail = $_FILES["thumbnail"] ?? null;
+        // initial thumbnail
+        $thumbnail = null;
 
-        // save the image..
-        $savedThumbnail = $controller->saveThumbnail($thumbnail);
+        // get the video id
+        $videoId = $_POST["videoId"] ?? null;
 
-        // ready the data to for video addon..
-        $categoryIds = explode(",", $categoryIdsString);
+        // when thumbnail is provided (for update)
+        if(isset($_FILES["thumbnail"])) {
 
-        // check if image is uploaded..
-        if($savedThumbnail == false) {
-
-            // send the error response..
-            echo json_encode([
-                "status" => false,
-                "message" => "check image again before upload"
-            ]);
-            exit();
+            // save the thumbnail..
+            $thumbnail = $controller->saveThumbnail($_FILES["thumbnail"]);
         }
 
-        // add a new video..
-        $addedResponse = $controller->handleAddVideoWithCategories(
-            [
-                "title" => $title,
-                "description" => $description,
-                "video_url" => $video_url,
-                "thumbnail" => $savedThumbnail,
-                "uploaded_by" => $uploadedBy
-            ],
-            $categoryIds
+        // update the video data..
+        $updatedResponse = $controller->handleUpdateVideo(
+            $title,
+            $description,
+            $video_url,
+            $thumbnail,
+            $videoId
         );
     
         // set the response code..
@@ -64,7 +52,7 @@
         // var_dump($categoryIds);
 
         // check log..
-        echo json_encode($addedResponse);
+        echo json_encode($updatedResponse);
         exit();
     
     }

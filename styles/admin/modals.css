@@ -345,3 +345,48 @@
 .js-update-category-modal-actions {
     float: right;
 } 
+
+
+/* manage video/playlist module */
+/* for open view video modal */
+.view-video-link{
+    background-color: lightgray;
+    max-width: 28%;
+    border-radius: 4px;
+    text-decoration: none;
+    color: black;
+    transition: font-size 0.15s ease-in-out;
+}
+
+
+.view-video-thumbnail {
+    display: block;      
+    margin: 10px auto;  
+    max-width: 240px;
+    border-radius: 8px;
+}
+
+/* .view-video-link {
+    display: inline-block;
+    margin-top: 6px;
+    color: #5500cb;
+    font-weight: 500;
+    text-decoration: none;
+} */
+
+/* when link is hovered */
+.view-video-link:hover {
+    font-size: 15px;
+}
+
+/* for playlists modal */
+/* (view playlist modal) */
+
+/* grid section for video details */
+.view-playlists-video-data-grid {
+    grid-template-columns: 1fr 1fr !important;
+}
+
+.js-view-playlist-video-count {
+    color: #333;
+}

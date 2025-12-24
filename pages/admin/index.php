@@ -880,6 +880,581 @@
             </button>
 
         </form>
+     </div>
+
+    <!-- 2. view video Modal -->
+    <div id="viewVideoModal" class="modal modal-lg">
+
+        <!-- Header -->
+        <div class="modal-header">
+            <h2 class="modal-title">Video Details</h2>
+            <span class="modal-close js-close-view-video-modal">×</span>
+        </div>
+
+        <!-- Body -->
+        <div class="modal-body">
+
+            <!-- Title -->
+            <div class="view-section">
+                <h3 class="view-title js-view-video-title">
+                    PHP Variables and Datatypes
+                </h3>
+            </div>
+
+            <!-- Thumbnail -->
+            <div class="view-section">
+                <span class="view-label">Thumbnail</span>
+                <img 
+                    src="" 
+                    alt="Video Thumbnail"
+                    class="view-video-thumbnail js-view-video-thumbnail"
+                />
+            </div>
+
+            <!-- Description -->
+            <div class="view-section">
+                <span class="view-label">Description</span>
+                <p class="view-description js-view-video-description">
+                    A detailed explanation of variables and datatypes in PHP.
+                </p>
+            </div>
+
+            <!-- Meta Info -->
+            <div class="view-meta-grid">
+
+                <!-- Uploaded By -->
+                <div class="view-section">
+                    <span class="view-label">Uploaded By</span>
+                    <p class="view-text js-view-video-uploaded-by">
+                        Admin
+                    </p>
+                </div>
+
+                <!-- Categories -->
+                <div class="view-section">
+                    <span class="view-label">Categories</span>
+                    <div class="view-topics js-view-video-categories">
+                        <!-- category chips -->
+                        <span class="label-tag">Variables</span>
+                        <span class="label-tag">Datatypes</span>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <!-- Video URL -->
+            <div class="view-section">
+                <span class="view-label">Video Link</span>
+                <a 
+                    href="#" 
+                    target="_blank"
+                    class="view-video-link js-view-video-url"
+                >
+                    👉 Open on YouTube
+                </a>
+            </div>
+
+            <!-- Dates -->
+            <div class="view-date-grid">
+
+                <!-- Created At -->
+                <div class="view-section">
+                    <span class="view-label">Created At</span>
+                    <p class="view-text js-view-video-created-at">
+                        2025-12-19
+                    </p>
+                </div>
+
+                <!-- Updated At -->
+                <div class="view-section">
+                    <span class="view-label">Updated At</span>
+                    <p class="view-hints js-view-video-updated-at">
+                        —
+                    </p>
+                </div>
+
+                <!-- Deleted At -->
+                <div class="view-section">
+                    <span class="view-label">Deleted At</span>
+                    <p class="view-hints js-view-video-deleted-at">
+                        —
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. update video modal  -->
+    <!-- Update / Edit Video Modal -->
+    <div id="updateVideoModal" class="modal modal-lg">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <h2 class="modal-title">Update Video</h2>
+            <span class="modal-close js-close-update-video-modal">×</span>
+            <input type="hidden" class="js-update-video-id" />
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body update-video-modal-body">
+
+            <!-- SECTION 1: BASIC VIDEO DETAILS -->
+            <form class="modal-section-box js-update-video-form" enctype="multipart/form-data">
+
+                <h4 class="section-heading">Basic Details</h4>
+
+                <div class="modal-section">
+                    <label>Title</label>
+                    <input 
+                        type="text" 
+                        class="modal-input js-video-update-title"
+                    />
+                </div>
+
+                <div class="modal-section">
+                    <label>Description</label>
+                    <textarea 
+                        class="modal-textarea js-video-update-description">
+                    </textarea>
+                </div>
+
+                <div class="modal-section">
+                    <label>Video URL</label>
+                    <input 
+                        type="url" 
+                        class="modal-input js-video-update-url"
+                    />
+                </div>
+
+                <div class="modal-section">
+                    <label>Replace Thumbnail</label>
+                    <input 
+                        type="file" 
+                        accept="image/*"
+                        class="modal-input js-video-update-thumbnail"
+                    />
+                    <small class="helper-text">
+                        Leave empty to keep existing thumbnail
+                    </small>
+                </div>
+
+                <button 
+                    type="submit" 
+                    class="update-primary-btn js-update-video-btn"
+                >
+                    Save Video Changes
+                </button>
+
+            </form>
+
+            <!-- SECTION 2: ADD CATEGORIES -->
+            <div class="modal-section-box">
+
+                <h4 class="section-heading">Add Categories</h4>
+
+                <div class="modal-section">
+                    <label>Select Categories</label>
+
+                    <div class="topic-dropdown">
+                        <div class="topic-dropdown-header js-category-toggle">
+                            <span class="selected-topics-text">
+                                Select Categories
+                            </span>
+                            <span class="dropdown-arrow">▾</span>
+                        </div>
+
+                        <div class="topic-dropdown-body js-category-dropdown">
+
+                            <input 
+                                type="text"
+                                class="topic-search js-category-search"
+                                placeholder="Search categories..."
+                            />
+
+                            <div class="topic-list js-category-list">
+                                <!-- rendered dynamically -->
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <button class="update-primary-btn js-add-video-categories-btn">
+                    Add Selected Categories
+                </button>
+
+            </div>
+
+            <!-- SECTION 3: REMOVE EXISTING CATEGORIES -->
+            <div class="modal-section-box">
+
+                <h4 class="section-heading">Remove Categories</h4>
+
+                <div class="assigned-topics js-assigned-video-categories">
+                    <!-- Example chip -->
+                    <!--
+                    <span class="label-tag">
+                        Variables
+                        <span 
+                            class="remove-topic js-remove-video-category" 
+                            data-category-id="42"
+                        >🗑</span>
+                    </span>
+                    -->
+                </div>
+
+                <button class="update-danger-btn js-save-removed-video-categories-btn">
+                    Remove Selected Categories
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 4. delete video modal -->
+    <!-- delete video confirmation Modal -->
+    <div class="modal" id="deleteVideoModal">
+
+        <!-- header -->
+        <div class="modal-header">
+            <h3 class="modal-title">Delete Video</h3>
+            <span class="modal-close js-close-delete-video-modal">×</span>
+        </div>
+
+        <!-- body -->
+        <div class="modal-content">
+
+            <p class="modal-warning">
+                ⚠️ This action is irreversible
+            </p>
+
+            <p>
+                Are you sure you want to delete this video?
+            </p>
+            <!-- **ignore this** -->
+            <input type="text" class="js-video-delete-id" hidden />
+        </div>
+
+        <!-- actions -->
+        <button 
+            class="danger-btn js-confirm-delete-video"
+        >
+            Delete
+        </button>
+    </div>
+
+    <!-- **for playlist section** -->
+    <!-- 1. add playlist modal -->
+    <div id="addPlaylistModal" class="modal modal-lg">
+
+        <!-- modal header -->
+        <div class="modal-header">
+            <h2 class="modal-title">Add Playlist</h2>
+            <span class="modal-close js-close-playlist-modal">×</span>
+        </div>
+
+        <!-- modal body -->
+        <form id="addPlaylistForm">
+
+            <!-- BASIC INFO -->
+            <div class="modal-section">
+                <label>Playlist Name</label>
+                <input 
+                    type="text" 
+                    class="modal-input js-playlist-name"
+                    placeholder="Enter playlist name"
+                    required
+                >
+
+                <label>Description</label>
+                <textarea 
+                    class="modal-textarea js-playlist-description"
+                    placeholder="Short description about the playlist"
+                ></textarea>
+            </div>
+
+            <!-- ASSIGN VIDEOS -->
+            <section class="modal-section">
+                <label>Assign Videos</label>
+
+                <!-- Videos Dropdown -->
+                <div class="topic-dropdown">
+
+                    <div class="topic-dropdown-header js-video-toggle">
+                        <span class="selected-topics-text js-selected-videos-text">
+                            Select Videos
+                        </span>
+                        <span class="dropdown-arrow">▾</span>
+                    </div>
+
+                    <div class="topic-dropdown-body js-video-dropdown">
+
+                        <!-- search -->
+                        <input 
+                            type="text"
+                            class="topic-search js-video-search"
+                            placeholder="Search videos..."
+                        />
+
+                        <!-- video list -->
+                        <div class="topic-list js-video-list">
+                            
+                            <!-- Example -->
+                            <label>
+                                <input type="checkbox" value="12">
+                                PHP Variables Explained
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- SAVE -->
+            <button class="primary-btn js-save-playlist-btn">
+                Save Playlist
+            </button>
+        </form>
+    </div>
+
+
+    <!-- 2. Update / Edit Playlist Modal -->
+    <div id="updatePlaylistModal" class="modal modal-lg">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <h2 class="modal-title">Update Playlist</h2>
+            <span class="modal-close js-close-update-playlist-modal">×</span>
+            <input type="text" class="js-update-playlist-id" hidden/>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body update-playlist-modal-body">
+
+            <!-- SECTION 1: BASIC PLAYLIST DETAILS -->
+            <form class="modal-section-box js-update-playlist-form">
+
+                <h4 class="section-heading">Basic Details</h4>
+
+                <div class="modal-section">
+                    <label>Playlist Name</label>
+                    <input 
+                        type="text" 
+                        class="modal-input js-playlist-update-name"
+                    />
+                </div>
+
+                <div class="modal-section">
+                    <label>Description</label>
+                    <textarea 
+                        class="modal-textarea js-playlist-update-description">
+                    </textarea>
+                </div>
+
+                <button 
+                    type="submit" 
+                    class="update-primary-btn js-update-playlist-btn"
+                >
+                    Save Playlist Changes
+                </button>
+
+            </form>
+
+            <!-- SECTION 2: ADD VIDEOS TO PLAYLIST -->
+            <div class="modal-section-box">
+
+                <h4 class="section-heading">Add Videos</h4>
+
+                <div class="modal-section">
+                    <label>Select Videos</label>
+
+                    <div class="topic-dropdown">
+
+                        <div class="topic-dropdown-header js-video-toggle">
+                            <span class="selected-topics-text">
+                                Select Videos
+                            </span>
+                            <span class="dropdown-arrow">▾</span>
+                        </div>
+
+                        <div class="topic-dropdown-body js-video-dropdown">
+
+                            <!-- search -->
+                            <input 
+                                type="text"
+                                class="topic-search js-video-search"
+                                placeholder="Search videos..."
+                            />
+
+                            <!-- video list -->
+                            <div class="topic-list js-video-list">
+                                <!-- rendered dynamically -->
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <button class="update-primary-btn js-add-playlist-videos-btn">
+                    Add Selected Videos
+                </button>
+
+            </div>
+
+            <!-- SECTION 3: REMOVE EXISTING VIDEOS -->
+            <div class="modal-section-box">
+
+                <h4 class="section-heading">Remove Videos</h4>
+
+                <div class="assigned-topics js-assigned-playlist-videos">
+                    <!-- Example chip -->
+                    <!--
+                    <span class="label-tag">
+                        PHP Variables
+                        <span 
+                            class="remove-topic js-remove-playlist-video" 
+                            data-video-id="12"
+                        >🗑</span>
+                    </span>
+                    -->
+                </div>
+
+                <button class="update-danger-btn js-save-removed-playlist-videos-btn">
+                    Remove Selected Videos
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- View Playlist Modal -->
+    <div id="viewPlaylistModal" class="modal modal-lg">
+
+        <!-- Header -->
+        <div class="modal-header">
+            <h2 class="modal-title">Playlist Details</h2>
+            <span class="modal-close js-close-view-playlist-modal">×</span>
+        </div>
+
+        <!-- Body -->
+        <div class="modal-body">
+
+            <!-- Playlist Title -->
+            <div class="view-section">
+                <h3 class="view-title js-view-playlist-name">
+                    PHP Fundamentals
+                </h3>
+            </div>
+
+            <!-- Description -->
+            <div class="view-section">
+                <span class="view-label">Description</span>
+                <p class="view-description js-view-playlist-description">
+                    This playlist covers the core concepts of PHP required for beginners.
+                </p>
+            </div>
+
+            <!-- Meta Info -->
+            <div class="view-meta-grid view-playlists-video-data-grid">
+
+                <!-- Total Videos -->
+                <div class="view-section">
+                    <span class="view-label">Total Videos</span>
+                    <span class="js-view-playlist-video-count">
+                        2 Videos
+                    </span>
+                </div>
+
+                <!-- Videos List -->
+                <div class="view-section">
+                    <span class="view-label">Videos in Playlist</span>
+
+                    <div class="view-topics js-view-playlist-videos playlist-video-list">
+                        <!-- Example -->
+                        <!--
+                        <span class="label-tag">
+                            PHP Variables
+                        </span>
+                        <span class="label-tag">
+                            PHP Datatypes
+                        </span>
+                        -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dates -->
+            <div class="view-date-grid">
+
+                <!-- Created At -->
+                <div class="view-section">
+                    <span class="view-label">Created at</span>
+                    <p class="view-hints js-view-playlist-created-at">
+                        2025-12-24 13:44:59
+                    </p>
+                </div>
+
+                <!-- Updated At -->
+                <div class="view-section">
+                    <span class="view-label">Updated at</span>
+                    <p class="view-hints js-view-playlist-updated-at">
+                        2025-12-24 14:35:27
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Deleted At (Optional / Hidden if null) -->
+            <div class="view-section js-view-playlist-deleted-wrapper" style="display:none;">
+                <span class="view-label">Deleted at</span>
+                <p class="view-hints js-view-playlist-deleted-at">
+                    2025-12-25
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Delete Playlist Modal -->
+    <div class="modal" id="deletePlaylistModal">
+
+        <!-- Header -->
+        <div class="modal-header">
+            <h3 class="modal-title">Delete Playlist</h3>
+            <span class="modal-close js-close-delete-playlist-modal">×</span>
+        </div>
+
+        <!-- Body -->
+        <div class="modal-content">
+            <p class="modal-warning">
+                ⚠️ This action is irreversible
+            </p>
+
+            <p>
+                Deleting this playlist will permanently remove it and unassign
+                all videos linked to this playlist.
+            </p>
+
+            <!-- Playlist info -->
+            <p>
+                <input type="hidden" class="js-delete-playlist-id" />
+                <strong class="js-delete-playlist-name">
+                    <!-- dynamically injected playlist name -->
+                </strong>
+            </p>
+        </div>
+
+        <!-- Actions -->
+        <button 
+            class="danger-btn js-confirm-delete-playlist"
+        >
+            Delete
+        </button>
+
     </div>
 
 

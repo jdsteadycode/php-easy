@@ -19,49 +19,29 @@
     if($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // get the data..
-        $title = $_POST["title"] ?? "";
+        $name = $_POST["name"] ?? "";
         $description = $_POST["description"] ?? "";
-        $video_url = $_POST["videoUrl"] ?? "";
-        $uploadedBy = $_POST["uploadedBy"] ?? "";
-        $categoryIdsString = $_POST["categoryIds"] ?? [];
+        $created_by = $_POST["createdBy"] ?? "";
+        $videoIdString = $_POST["videoIds"];
 
-        // get the thumbnail file..
-        $thumbnail = $_FILES["thumbnail"] ?? null;
+        // sanitize the video ids into an array..
+        $videoIds = explode(",", $videoIdString);
 
-        // save the image..
-        $savedThumbnail = $controller->saveThumbnail($thumbnail);
-
-        // ready the data to for video addon..
-        $categoryIds = explode(",", $categoryIdsString);
-
-        // check if image is uploaded..
-        if($savedThumbnail == false) {
-
-            // send the error response..
-            echo json_encode([
-                "status" => false,
-                "message" => "check image again before upload"
-            ]);
-            exit();
-        }
-
-        // add a new video..
-        $addedResponse = $controller->handleAddVideoWithCategories(
+        // add a new playlist..
+        $addedResponse = $controller->handleAddPlaylistWithVideos(
             [
-                "title" => $title,
+                "name" => $name,
                 "description" => $description,
-                "video_url" => $video_url,
-                "thumbnail" => $savedThumbnail,
-                "uploaded_by" => $uploadedBy
+                "created_by" => $created_by
             ],
-            $categoryIds
+            $videoIds
         );
     
         // set the response code..
         http_response_code(200);
 
         // check log..
-        // var_dump($categoryIds);
+        // var_dump($videoIds);
 
         // check log..
         echo json_encode($addedResponse);

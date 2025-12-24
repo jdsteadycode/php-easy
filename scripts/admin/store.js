@@ -4,6 +4,8 @@ export const AdminStore = {
     topics: [],
     problemSets: [],
     categories: [],
+    videos: [],
+    playlists: [],
     currentUserId: null,
 
     // () -> set the current user id..
