@@ -1,0 +1,95 @@
+.playground-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+/* editor header */
+.editor-header {
+    display: flex;
+    justify-content: space-between;
+    margin-block: 5px;
+}
+
+/* output header */
+.output-header {
+    display: flex;
+    justify-content: space-between;
+    margin-block: 5px;
+}
+
+/* run button */
+.run-btn {
+    width: 14%;
+    padding: 10px 0;
+    font-size: 12px;
+    font-weight: 500;
+    background-color: rgb(3, 129, 106);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.15s, background-color 0.15s;
+}
+
+
+/* when run-button is hovered */
+.run-btn:hover {
+    transform: translateY(-3px);
+}
+
+/* when run-button is active */
+.run-btn:active {
+    background-color: rgb(14, 156, 130);
+}
+
+/* when run-button is disabled */
+.run-btn:disabled {
+    cursor: not-allowed;
+}
+
+/* for clear btn */
+.clear-btn {
+    background-color: rgb(242, 203, 8);
+}
+
+/* when clear btn is active */
+.clear-btn:active {
+    background-color: rgb(255, 218, 32);
+}
+
+/* when clear btn is disabled */
+.clear-btn:disabled {
+    cursor: not-allowed;
+}
+
+
+.playground-editor,
+.playground-output {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.15);
+    padding: 15px;
+}
+
+.code-editor {
+    width: 100%;
+    height: 320px;
+    resize: none;
+    border: none;
+    outline: none;
+    background: var(--background-color3);
+    padding: 12px;
+    border-radius: 10px;
+    font-family: monospace;
+}
+
+.output-box {
+    height: 320px;
+    background: #0b0b0b;
+    color: #e6e6e6;
+    padding: 12px;
+    border-radius: 10px;
+    overflow-y: auto;
+}

@@ -51,25 +51,27 @@
     date_default_timezone_set('Asia/Kolkata');
 
     // check log..
-    $auth = new AuthController();
+    // $auth = new AuthController();
 
     // var_dump($topic);
 
     // 1..
     // add a new user
     // $added =  $auth->register_user(
-    //     "INSERT INTO users (first_name, last_name, username, email, phone_number, password, role, created_at) VALUES (:first_name, :last_name, :username, :email, :phone_number, :password, :role, :created_at)",
+    //     "INSERT INTO users (first_name, last_name, username, email, phone_number, password, created_at) VALUES (:first_name, :last_name, :username, :email, :phone_number, :password, :created_at)",
     //     [
-    //         "first_name" => "jeet",
-    //         "last_name" => "desai",
-    //         "username" => "jd",
-    //         "email" => "desaijeet@gmail.com",
-    //         "phone_number" => "1121121121",
-    //         "password" => password_hash("Jeet", PASSWORD_DEFAULT),
-    //         "role" => "admin",
+    //         "first_name" => "test",
+    //         "last_name" => "user",
+    //         "username" => "testuser",
+    //         "email" => "testuser@gmail.com",
+    //         "phone_number" => "1010101110",
+    //         "password" => password_hash("test@1234", PASSWORD_DEFAULT),
     //         "created_at" => date("d-m-y h:i:s")
     //     ]
     // );
+
+    // check log..
+    // var_dump($added);
 
     // 2.
     // login a existing user..

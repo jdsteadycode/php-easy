@@ -1,13 +1,10 @@
 // grab the modules..
 import {AuthActions} from "/php_easy/scripts/auth.js";
 import {AdminStore} from "/php_easy/scripts/admin/store.js";
-import {initManageTopics} from "/php_easy/scripts/admin/pages/page.topics.js";
-import {initManageProblemSets} from "/php_easy/scripts/admin/pages/page.problemSet.js";
-import {initManageCategories} from "/php_easy/scripts/admin/pages/page.categories.js";
 import {initManageLogout} from "/php_easy/scripts/admin/pages/page.logout.js";
-import {initManageDashboard} from "/php_easy/scripts/admin/pages/page.dashboard.js";
-import {initmanageVideosAndPlaylists} from "/php_easy/scripts/admin/pages/page.videosandplaylist.js";
-import {initSettings} from "/php_easy/scripts/admin/pages/page.settings.js";
+import {initHome} from "/php_easy/scripts/user/pages/page.home.js";
+import {initPrep} from "/php_easy/scripts/user/pages/page.prep.js";
+import {initPlayground} from "/php_easy/scripts/user/pages/page.playground.js";
 import {Modal} from "/php_easy/scripts/admin/modals/modals.js";
 
 // when document is loaded..
@@ -26,6 +23,9 @@ window.addEventListener("load", async function(event) {
 
     // set the admin state..
     AdminStore.setCurrentUserId(verificationStatus["user_id"]);
+
+    // show the home page..
+    handlePageContent("Home");
 });
 
 // when document is clicked..
@@ -79,7 +79,7 @@ navoptions.forEach(function (navOption) {
         const navOptionText = navOption.innerText.trim().split("\n")[1].trim();
 
         // check log..
-        // console.log(navOptionText);
+        console.log(navOptionText);
 
         // add the class..
         // make the current nav-option active
@@ -104,48 +104,25 @@ function handlePageContent(page) {
     // according to the page..
     switch (page) {
 
-        // when it is manage topics..
-        case `Manage Topics`:
-
-            // handle topics view..
-            initManageTopics();
+        // when it is home..
+        case `Home`:
+            initHome();
             break;
 
-        // when it is dashboard..
-        case `Dashboard`:
+        // when it is practice (prep view)..
+        case `Practice`:
 
-            // handle the dashboard view..
-            initManageDashboard();
+            // handle the practice (prep view)..
+            initPrep();
             break;
 
-        // when it is categories..
-        case `Manage Categories`:
+        // when it is playground (free practice view)..
+        case `Playground`:
 
-            // handle the categories view..
-            initManageCategories();
+            // handle the playground (free practice view)..
+            initPlayground();
             break;
-
-        // when it is manage problem sets..
-        case `Manage Problem Sets`:
-
-            // handle the problem sets view..
-            initManageProblemSets();
-            break;
-
-        // when it is manage videos and playlists..
-        case `Manage Videos / Playlists`:
-
-            // handle the videos and playlists view..
-            initmanageVideosAndPlaylists();
-            break;
-
-        // when it is settings..
-        case `Settings`:
-
-            // handle the settings view..
-            initSettings();
-            break;
-
+        
         // when it is logout..
         case `Logout`:
 

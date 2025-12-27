@@ -6,6 +6,7 @@ export const AdminStore = {
     categories: [],
     videos: [],
     playlists: [],
+    userData: [],
     currentUserId: null,
 
     // () -> set the current user id..

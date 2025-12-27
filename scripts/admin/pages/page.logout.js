@@ -1,6 +1,6 @@
 // grab the modules..
-import {logoutHTML} from "../templates/logout.html.js";
-import {AuthActions} from "../../auth.js";
+import {logoutHTML} from "/php_easy/scripts/admin/templates/logout.html.js";
+import {AuthActions} from "/php_easy/scripts/auth.js";
 
 // () -> handles the Logout Page..
 export function initManageLogout() {
@@ -25,8 +25,11 @@ function attachLogoutEvents() {
             // check log..
             // console.log("logout cancel initiated");
 
+            // the logout modal..
+            const logoutModal = document.querySelector(".logout-modal");
+
             // cancel the logout..
-            AuthActions.logoutTheUserCancel();
+            AuthActions.logoutTheUserCancel(event, logoutModal);
             return;
         }
 

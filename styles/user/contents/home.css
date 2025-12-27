@@ -1,0 +1,112 @@
+/* Home Page Styles */
+
+.hero-section {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.hero-title {
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.hero-title span {
+    color: var(--two-use-color);
+}
+
+.hero-subtitle {
+    margin-top: 12px;
+    font-size: 18px;
+    color: #555;
+}
+
+.hero-actions {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.primary-btn,
+.secondary-btn {
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+}
+
+.primary-btn {
+    background-color: var(--two-use-color);
+    color: #fff;
+}
+
+.secondary-btn {
+    background-color: transparent;
+    border: 2px solid var(--two-use-color);
+    color: var(--two-use-color);
+}
+
+/* Feature Section */
+
+.feature-section {
+    margin-top: 80px;
+    text-align: center;
+}
+
+.section-heading {
+    font-size: 30px;
+    color: var(--primary-color);
+}
+
+.feature-grid {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.feature-card {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 30px 20px;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.1);
+}
+
+.feature-emoji {
+    font-size: 32px;
+}
+
+/* Learning Path */
+
+.path-section {
+    margin-top: 80px;
+    text-align: center;
+}
+
+.path-steps {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.path-step {
+    padding: 12px 20px;
+    background-color: var(--background-color-active);
+    color: #fff;
+    border-radius: 30px;
+    font-weight: 500;
+}
+
+/* CTA */
+
+.cta-section {
+    margin: 100px 0 40px 0;
+    padding: 50px 20px;
+    background-color: var(--background-color4);
+    text-align: center;
+    border-radius: 30px;
+}

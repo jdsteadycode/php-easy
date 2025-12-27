@@ -51,6 +51,12 @@
         href="../../styles/admin/contents/manage_videosandplaylist.css?v=<?php echo time(); ?>"
     />
 
+    <!-- for settings css -->
+     <link 
+        rel="stylesheet"
+        href="../../styles/admin/contents/settings.css?v=<?php echo time(); ?>"
+    />
+
     <!-- for toasts css -->
      <link 
         rel="stylesheet"
@@ -66,13 +72,13 @@
 <body>
 
     <!-- header section -->
-    <?php  require_once(FILE_PATH . "/components/admin/admin_header.php") ?>
+    <?php  require_once(FILE_PATH . "/components/header.php") ?>
 
     <!-- main container -->
     <main class="main-container">
 
         <!-- sidebar navigation -->
-        <?php  require_once(FILE_PATH . "/components/admin/admin_sidebar.php") ?>
+        <?php  require_once(FILE_PATH . "/components/sidebar.php") ?>
 
         <!-- main content -->
         <div class="main">
@@ -1455,6 +1461,265 @@
             Delete
         </button>
 
+    </div>
+
+
+    <!-- for settings module -->
+    <!-- 1. UPDATE PROFILE MODAL -->
+    <div id="updateProfileModal" class="modal modal-lg">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <h2 class="modal-title">Update Profile</h2>
+            <span class="modal-close js-close-update-profile-modal">×</span>
+            <input type="hidden" class="js-update-user-id" />
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body update-profile-modal-body">
+
+            <!-- SECTION 1: BASIC PROFILE DETAILS -->
+            <form class="modal-section-box js-update-profile-form">
+
+                <h4 class="section-heading">Basic Information</h4>
+
+                <div class="modal-section two-col">
+                    <div class="field">
+                        <label>First Name</label>
+                        <input 
+                            type="text"
+                            class="modal-input js-update-first-name"
+                            placeholder="Enter first name"
+                        />
+                    </div>
+
+                    <div class="field">
+                        <label>Last Name</label>
+                        <input 
+                            type="text"
+                            class="modal-input js-update-last-name"
+                            placeholder="Enter last name"
+                        />
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <label>Username</label>
+                    <input 
+                        type="text"
+                        class="modal-input js-update-username"
+                        placeholder="Enter username"
+                    />
+                </div>
+
+                <div class="modal-section">
+                    <label>Gender</label>
+                    <select class="modal-select js-update-gender">
+                        <option value="">Select gender</option>
+                        <option value="male">male</option>
+                        <option value="female">female</option>
+                        <option value="prefer_not_to_say">Prefer not to say</option>
+                    </select>
+                </div>
+
+                <div class="modal-section">
+                    <label>Bio</label>
+                    <textarea 
+                        class="modal-textarea js-update-bio"
+                        placeholder="Write something about yourself..."
+                    ></textarea>
+                </div>
+
+                <button 
+                    type="submit"
+                    class="update-primary-btn js-save-profile-btn"
+                >
+                    Save Profile Changes
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 2. UPDATE PROFILE IMAGE -->
+     <!-- Update Profile Image Modal -->
+    <div id="updateProfileImageModal" class="modal modal-sm">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <h2 class="modal-title">Update Profile Image</h2>
+            <span class="modal-close js-close-profile-image-modal">×</span>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body update-profile-image-body">
+
+            <!-- Image Preview -->
+            <div class="profile-image-preview">
+                <!-- default fallback if no image -->
+                <div class="profile-image-placeholder js-profile-image-placeholder">
+                    👤
+                </div>
+
+                <!-- actual image -->
+                <img 
+                    src="" 
+                    alt="Profile Image"
+                    class="profile-image js-profile-image-preview"
+                    hidden
+                />
+            </div>
+
+            <!-- Upload Section -->
+            <form class="profile-image-form js-profile-image-form" enctype="multipart/form-data">
+
+                <label class="upload-label">
+                    Choose Image
+                    <input 
+                        type="file"
+                        accept="image/*"
+                        class="profile-image-input js-profile-image-input"
+                        hidden
+                    />
+                </label>
+
+                <!-- helper text -->
+                <p class="upload-hint">
+                    JPG, PNG • Max 2MB
+                </p>
+
+                <!-- action buttons -->
+                <div class="modal-action-buttons">
+                    <button 
+                        type="submit"
+                        class="update-primary-btn js-save-profile-image-btn"
+                    >
+                        Update Image
+                    </button>
+
+                    <button 
+                        type="button"
+                        class="update-danger-btn js-remove-profile-image-btn"
+                    >
+                        Remove Image
+                    </button>
+                </div>
+
+            </form>
+
+            <!-- messages -->
+            <p class="error-msg js-profile-image-error"></p>
+            <p class="success-msg js-profile-image-success"></p>
+
+        </div>
+    </div>
+
+    <!-- Section 2 privacy and security -->
+     <!-- Update Password Modal -->
+    <div id="updatePasswordModal" class="modal modal-md">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <h2 class="modal-title">Update Password</h2>
+            <span class="modal-close js-close-update-password-modal">×</span>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body">
+            <form class="password-update-form js-password-update-form">
+
+                <!-- Current Password -->
+                <div class="modal-section">
+                    <label>Current Password</label>
+                    <input 
+                        type="password"
+                        class="modal-input js-current-password"
+                        placeholder="Enter current password"
+                    />
+                </div>
+
+                <!-- New Password -->
+                <div class="modal-section">
+                    <label>New Password</label>
+                    <input 
+                        type="password"
+                        class="modal-input js-new-password"
+                        placeholder="Enter new password"
+                    />
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="modal-section">
+                    <label>Confirm New Password</label>
+                    <input 
+                        type="password"
+                        class="modal-input js-confirm-password"
+                        placeholder="Re-enter new password"
+                    />
+                </div>
+
+                <!-- Info text -->
+                <p class="password-hint">
+                    Password must be at least 8 characters long.
+                </p>
+
+                <!-- update the password confirm -->
+                <button 
+                    type="submit"
+                    class="update-primary-btn js-save-password-btn"
+                >
+                    Update Password
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- delete account modal -->
+    <!-- Delete Account Confirmation Modal -->
+    <div id="deleteAccountModal" class="modal modal-sm">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <h2 class="modal-title">Delete Account</h2>
+            <span class="modal-close js-close-delete-account-modal">×</span>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body delete-account-modal-body">
+
+            <!-- Warning Section -->
+            <div class="delete-warning-box">
+                <div class="delete-icon">⚠️</div>
+
+                <h3 class="delete-heading">
+                    Are you absolutely sure?
+                </h3>
+
+                <p class="delete-message">
+                    This action <strong>cannot be undone</strong>.  
+                    All your account data, profile details, and related content
+                    will be permanently deleted.
+                </p>
+            </div>
+
+            <!-- Confirmation Input -->
+            <div class="modal-section">
+                <label>
+                    Type <strong>DELETE</strong> to confirm
+                </label>
+                <input 
+                    type="text" 
+                    class="modal-input js-delete-confirm-input"
+                    placeholder="Type DELETE here"
+                />
+            </div>
+
+            <!-- final delete btn -->
+            <button 
+                class="update-danger-btn js-confirm-delete-account-btn"
+                disabled>
+                confirm
+            </button>
+        </div>
     </div>
 
 

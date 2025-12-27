@@ -34,7 +34,7 @@
 
         // get the credentails..
         $existing_user = $auth->login_user(
-            "SELECT * FROM users WHERE email = :email",
+            "SELECT * FROM users WHERE email = :email AND deleted_at IS NULL",
             [
                 "email" => $email
             ]

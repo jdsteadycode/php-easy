@@ -1,5 +1,5 @@
 // grab the modules..
-import {initManageDashboard} from "/php_easy/scripts/admin/pages/page.dashboard.js";
+// import {initManageDashboard} from "/php_easy/scripts/admin/pages/page.dashboard.js";
 import {Modal} from "/php_easy/scripts/admin/modals/modals.js";
 import {Toast} from "/php_easy/scripts/common/toasts.js";
 import {AdminStore} from "/php_easy/scripts/admin/store.js";
@@ -180,6 +180,20 @@ export const AuthActions = {
             // grab the data from api..
             const data = await AuthApi.login(userData);
 
+            // when not existing..
+            // when invalid credentials..
+            if(data["message"] === "user doesn't exist") {
+                
+                // show the toast..
+                Toast.show({
+                    "title": "Error",
+                    "message": data["message"],
+                    "type": "error",
+                    "duration": 3000
+                });
+
+                return;
+            }
 
             // when invalid credentials..
             if(data["message"] === "invalid credentials") {
@@ -251,12 +265,28 @@ export const AuthActions = {
                     "type": "success",
                 });
 
-                // after toasts goes of in 3 seconds..
-                setTimeout(function() {
+                // according to user role..
+                if(data["user_role"] === "admin") {
 
-                    // redirect the admin..
-                    window.location.href = window.location.origin + `/php_easy/pages/admin/index.php`;
-                }, 3500);
+                    // after toasts goes of in 3 seconds..
+                    setTimeout(function() {
+
+                        // redirect the admin..
+                        window.location.href = window.location.origin + `/php_easy/pages/admin/index.php`;
+                    }, 3500);
+                    return;
+                }
+                // when user..
+                else if(data["user_role"] === "user") {
+
+                    // after toasts goes of in 3 seconds..
+                    setTimeout(function() {
+
+                        // redirect the admin..
+                        window.location.href = window.location.origin + `/php_easy/pages/user/index.php`;
+                    }, 3500);
+                    return;
+                }
                 
                 return;
             }
@@ -312,12 +342,15 @@ export const AuthActions = {
     },
 
     // () -> logout cancel..
-    logoutTheUserCancel: function(event) {
+    logoutTheUserCancel: function(event, modal) {
+
+        // check log..
+        // console.log(event, modal);
 
         // close the modal..
-        Modal.closeModal();
+        Modal.closeModal(event, modal);
 
         // redirect the dashboard view..
-        initManageDashboard();
+        // initManageDashboard();
     },
 }

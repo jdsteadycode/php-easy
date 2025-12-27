@@ -1,0 +1,99 @@
+/* PHP Prep Page */
+
+.prep-hero {
+    background: var(--background-color2);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.prep-title {
+    font-size: 32px;
+    color: var(--primary-color);
+}
+
+.prep-description {
+    margin-top: 10px;
+    color: #555;
+}
+
+.prep-stats {
+    margin-top: 15px;
+    display: flex;
+    gap: 20px;
+    font-weight: 500;
+}
+
+/* Filter Bar */
+.prep-filters {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    background: var(--background-color3);
+}
+
+.filter-btn.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+.filter-search {
+    padding: 8px 14px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+}
+
+/* Problem Cards */
+.prep-problems {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.problem-card {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+}
+
+.problem-title {
+    font-size: 18px;
+}
+
+.problem-topic {
+    font-size: 14px;
+    color: #777;
+}
+
+.difficulty {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 13px;
+}
+
+.difficulty.easy { background: #d4f7d4; }
+.difficulty.medium { background: #fff3cd; }
+.difficulty.hard { background: #f8d7da; }
+
+.solve-btn {
+    margin-left: 15px;
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: none;
+    background: var(--two-use-color);
+    color: white;
+    cursor: pointer;
+}
