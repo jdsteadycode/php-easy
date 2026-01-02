@@ -54,6 +54,7 @@
 .modal-button-group {
     display: flex;
     gap: 10px;
+    justify-content: end;
 }
 
 
@@ -110,6 +111,30 @@
 .modal-lg {
     max-width: 700px;
 }
+
+/* Add Problem Set modal only */
+#addProblemSetModal {
+    max-height: 90vh;        /* prevent screen overflow */
+    overflow: hidden;       /* keep header fixed */
+}
+
+/* Make form scrollable */
+#addProblemSetModal form {
+    max-height: calc(90vh - 70px); /* subtract header height */
+    overflow-y: auto;
+    padding-right: 6px; /* prevent scrollbar overlap */
+}
+
+/* Optional: smoother scrolling */
+#addProblemSetModal form::-webkit-scrollbar {
+    width: 6px;
+}
+
+#addProblemSetModal form::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 6px;
+}
+
 
 /* modal header */
 .modal-header {

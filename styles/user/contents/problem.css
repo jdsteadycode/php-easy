@@ -1,0 +1,188 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, sans-serif;
+}
+
+body {
+    background: #f5f7fa;
+    height: 100vh;
+}
+
+.problem-page {
+    display: flex;
+    height: 100vh;
+}
+
+/* LEFT PANEL */
+.problem-left {
+    width: 45%;
+    padding: 24px;
+    background: #ffffff;
+    overflow-y: auto;
+    border-right: 1px solid #e0e0e0;
+}
+
+.problem-title {
+    font-size: 24px;
+    margin-bottom: 12px;
+}
+
+.problem-meta {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.difficulty {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 13px;
+    color: #fff;
+}
+
+.difficulty.easy { background: #4caf50; }
+.difficulty.medium { background: #ff9800; }
+.difficulty.hard { background: #f44336; }
+
+.topics {
+    font-size: 14px;
+    color: #555;
+}
+
+.problem-section {
+    margin-bottom: 20px;
+}
+
+.problem-status {
+    display: flex;
+    gap: 50px;
+}
+
+.attempts-above-three {
+    color: #e1c10e;
+}
+
+.accepted-success {
+    color: #22c55e;
+}
+
+.accepted-fail {
+    color: crimson;
+}
+
+.problem-section h3 {
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+
+.problem-section p,
+.problem-section li {
+    font-size: 14px;
+    color: #333;
+}
+
+pre {
+    background: #f1f3f6;
+    color: #0f172a;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    overflow-x: auto;
+}
+
+/* RIGHT PANEL */
+.problem-right {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    background: #0f172a;
+    color: #e5e7eb;
+}
+
+.editor-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: #020617;
+    border-bottom: 1px solid #1e293b;
+}
+
+.run-btn {
+    background: #feb134;
+    border: none;
+    padding: 6px 14px;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.15s;
+}
+
+.submit-btn {
+    background: #22c55e;
+    border: none;
+    padding: 6px 14px;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.15s;
+}
+
+.back-button {
+    float: right;
+    background: #203ccb;
+    border: none;
+    padding: 6px 14px;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.15s;
+}
+
+.back-button:hover {
+    background: #3250e5;
+}
+
+/* when run button is hovered */
+.run-btn:hover {
+    background: #e6ac17;
+}
+
+/* when submit button is hovered */
+.submit-btn:hover {
+    background: #26b65b;
+}
+
+/* when submit button is disabled */
+.submit-btn:disabled {
+    cursor: not-allowed;
+    opacity: .7;
+}
+
+.code-editor {
+    flex: 1;
+    background: #020617;
+    color: #e5e7eb;
+    border: none;
+    padding: 16px;
+    font-family: monospace;
+    font-size: 14px;
+    resize: none;
+    outline: none;
+}
+
+.output-box {
+    background: #020617;
+    border-top: 1px solid #1e293b;
+    padding: 12px 16px;
+}
+
+.output-box pre {
+    margin-top: 6px;
+    max-height: 120px;
+    overflow-y: auto;
+}

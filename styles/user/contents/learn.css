@@ -1,0 +1,82 @@
+/* Learn Module */
+
+.learn-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Header */
+
+.learn-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.learn-title {
+    font-size: 34px;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.learn-subtitle {
+    margin-top: 12px;
+    font-size: 16px;
+    color: #555;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Concepts Grid */
+
+.learn-concepts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+/* Concept Card */
+
+.learn-card {
+    background-color: var(--background-color2);
+    border-radius: 20px;
+    padding: 25px 22px;
+    box-shadow: 3px 3px 10px rgba(0, 30, 87, 0.15);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease;
+}
+
+.learn-card:hover {
+    transform: translateY(-5px);
+}
+
+.learn-card h3 {
+    font-size: 20px;
+    color: var(--secondary-color);
+}
+
+.learn-card p {
+    font-size: 14px;
+    color: #666;
+    margin: 12px 0 20px 0;
+}
+
+/* Button */
+
+.learn-btn {
+    align-self: flex-start;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background-color: var(--two-use-color);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.learn-btn:hover {
+    opacity: 0.9;
+}

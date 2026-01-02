@@ -28,7 +28,7 @@
         echo json_encode([
                 "message" => "authenticated",
                 "user_id" => $_SESSION["user_id"],
-                "is_admin" => $_SESSION["user_role"] === "admin"
+                "is_admin" => $_SESSION["user_role"] === "admin",
                 "status" => true,
         ]);
         exit();

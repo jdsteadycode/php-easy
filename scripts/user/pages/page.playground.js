@@ -74,7 +74,16 @@ async function handleCodeRun(event) {
     // console.log(execResponse);
 
     // show output..
-    displayOutput(execResponse);
+    if(execResponse["execution_status"] === "success") {
+
+        // show the output
+        displayOutput(execResponse["std_out"]);
+    }
+    else {
+
+        // show the error
+        displayOutput(execResponse["std_err"]);
+    }
 
     // after 1.5
     setTimeout(function() {

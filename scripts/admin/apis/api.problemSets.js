@@ -103,6 +103,110 @@ export const ProblemSetsApi = {
         });
     },
 
+    // () -> add the test cases to problem set
+    addTestCasesToProblemSet: async function(
+        testCaseData,
+        problemId) {
+        
+        // set the data to send..
+        const data = {
+            "testCaseData" : testCaseData,
+            "problemId": problemId
+        }
+
+        // make an php api call..
+        return fetch(
+            "http://localhost:8888/php_easy/apis/admin/problem_set/update/add_test_case.php",
+            {
+                "method": "POST",
+                "body": JSON.stringify(data)
+            }
+        )
+        // handle the response..
+        .then(function (response) {
+
+            // when response is not successful.. 
+            if(!response.ok) return {"status": false, "message": "http_error"};
+
+            // return response.text();
+
+            // get the parsed json response..
+            return response.json();
+        })
+        // get the parsed json data..
+        // .then(function (data) {
+
+        //     // check log..
+        //     console.log(data);
+        // })
+        // re-render the topics
+        // .then(initManageTopics)
+
+        // when error arises..
+        .catch(function (error) {
+
+            // check log..
+            console.log(error);
+
+            // when request fails..
+            return {"status": false, "message": "network_error"};
+        });
+    },
+
+    // () -> add the function meta to problem set
+    saveFunctionMeta: async function(
+        functionName,
+        functionType,
+        starterCode,
+        problemId) {
+        
+        // set the data to send..
+        const data = {
+            "functionName" : functionName,
+            "functionType": functionType,
+            "starterCode": starterCode,
+            "problemId": problemId
+        }
+
+        // make an php api call..
+        return fetch(
+            "http://localhost:8888/php_easy/apis/admin/problem_set/update/add_function_meta.php",
+            {
+                "method": "PATCH",
+                "body": JSON.stringify(data)
+            }
+        )
+        // handle the response..
+        .then(function (response) {
+
+            // when response is not successful.. 
+            if(!response.ok) return {"status": false, "message": "http_error"};
+
+            // return response.text();
+
+            // get the parsed json response..
+            return response.json();
+        })
+        // get the parsed json data..
+        // .then(function (data) {
+
+        //     // check log..
+        //     console.log(data);
+        // })
+        // re-render the topics
+        // .then(initManageTopics)
+
+        // when error arises..
+        .catch(function (error) {
+
+            // check log..
+            console.log(error);
+
+            // when request fails..
+            return {"status": false, "message": "network_error"};
+        });
+    },
+
     // () -> update the problemSet only..
     updateProblemSet: async function(
         title, 

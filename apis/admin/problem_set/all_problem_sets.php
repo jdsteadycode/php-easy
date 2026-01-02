@@ -32,7 +32,8 @@
                     ON problem_set.id = problem_set_topic_jn.problem_id
                 LEFT JOIN topics 
                     ON topics.id = problem_set_topic_jn.topic_id
-                GROUP BY problem_set.id
+                WHERE problem_set.deleted_at IS NULL
+                GROUP BY problem_set.id;
             ",
             []
         );

@@ -9,6 +9,10 @@ export const AdminStore = {
     userData: [],
     currentUserId: null,
 
+    // for general..
+    prepData: [],  // for all problem set.. 
+    problemSetData: {},     // single problem set..
+
     // () -> set the current user id..
     setCurrentUserId: function(incomingUserId) {
 

@@ -233,9 +233,11 @@
             </section>
 
             <!-- save button -->
-            <button class="primary-btn">
-                Save
-            </button>
+            <div class="modal-section">
+                <button class="primary-btn">
+                    Save
+                </button>
+            </div>
         </form>
     </div>
 
@@ -457,6 +459,91 @@
                 </button>
             </div>
 
+            <!-- SECTION 4: FUNCTION DEFINITION -->
+            <div class="modal-section-box">
+
+                <h4 class="section-heading">Function Definition</h4>
+
+                <!-- Function Name -->
+                <div class="modal-section">
+                    <label>Function Name</label>
+                    <input 
+                        type="text" 
+                        class="modal-input js-ps-update-function-name"
+                        placeholder="e.g. sortNumbers"
+                    />
+                    <small class="form-hint">
+                        Must match the function name used in starter code
+                    </small>
+                </div>
+
+                <!-- Function Type -->
+                <div class="modal-section">
+                    <label>Function Type</label>
+                    <select class="modal-input js-ps-update-function-type">
+                        <option value="single_param">
+                            Single Parameter (Array)
+                        </option>
+                        <option value="multi_param">
+                            Multiple Parameters
+                        </option>
+                    </select>
+                    <small class="form-hint">
+                        Single → function(array $data) <br>
+                        Multi → function($a, $b, ...)
+                    </small>
+                </div>
+
+                <!-- Starter Code -->
+                <div class="modal-section">
+                    <label>Starter Code</label>
+                    <textarea 
+                        class="modal-textarea js-ps-update-starter-code"
+                        rows="8"
+                        placeholder="function sortNumbers(array $nums) { }"
+                    ></textarea>
+                    <small class="form-hint">
+                        This code is shown to users and used by the judge
+                    </small>
+                </div>
+
+                <button class="update-primary-btn js-save-function-meta-btn">
+                    Save Function Definition
+                </button>
+
+            </div>
+
+
+            <!-- SECTION 4: TEST CASES DATA -->
+            <div class="modal-section-box">
+
+                <h4 class="section-heading">Test Cases</h4>
+
+                <div class="test-cases-container js-test-cases-container">
+                    <!-- Example test case template -->
+                    
+                    <div class="modal-section test-case-item">
+                        <label>Input</label>
+                        <textarea class="modal-textarea js-testcase-input"></textarea>
+
+                        <label>Expected Output</label>
+                        <textarea class="modal-textarea js-testcase-output"></textarea>
+
+                        <span class="remove-topic js-remove-testcase">🗑 Remove</span>
+                    </div>
+                   
+                </div>
+
+                <div class="modal-button-group">
+                    <button class="update-primary-btn js-add-testcase-btn">
+                        Add Test Case
+                    </button>
+
+                    <button class="update-primary-btn js-save-testcases-btn">
+                        Save test Case(s)
+                    </button>
+                </div>            
+            </div>
         </div>
     </div>
 

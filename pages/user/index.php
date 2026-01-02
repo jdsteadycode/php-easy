@@ -33,6 +33,12 @@
         href="/php_easy/styles/user/contents/playground.css?v=<?php echo time(); ?>"
     />
 
+    <!-- grab the learn css -->
+    <link 
+        rel="stylesheet"
+        href="/php_easy/styles/user/contents/learn.css?v=<?php echo time(); ?>"
+    />
+
     <!-- for auth css -->
     <link 
         rel="stylesheet"

@@ -103,10 +103,11 @@
                 "statement" => $statement
             ];
         }
-
+ 
         // () -> sanitization of executed output..
-        public static function sanitizeExecOutput(?string $output) {
+        public static function sanitizeExecOutput(?string $output): string {
 
+            // initial output..
             $output = $output ?? "";
 
             // check log..
@@ -114,8 +115,8 @@
             // die();
 
             // initial indexes..
-            $start = null;
-            $end = null;
+            $start = false;
+            $end = false;
 
             // check if output contains "in" and "on line"
             if(str_contains($output, " in ")) {
@@ -138,7 +139,7 @@
         }
 
         // () -> handle the sanitization and execution of incoming code..
-        public static function handleCode(string $input) {
+        public static function handleCode(string $input): array {
 
             // path for php execution engine..
             $pathToExec = "C:\\laragon\\bin\\php\\php-8.3.26-Win32-vs16-x64\\php.exe";
@@ -148,6 +149,15 @@
 
             // a temp file..
             $tempFile = tempnam(sys_get_temp_dir(), "php_play_");
+
+            // in case when file creation fails..
+            if($tempFile === false) {
+                return [
+                    "std_out" => "",
+                    "std_err" => "Execution File Creation failed",
+                    "execution_status" => "runtime_error"
+                ];
+            }
 
             // check log..
             // var_dump($tempFile);
@@ -165,14 +175,51 @@
             // check log..
             // var_dump($outcome);
 
-            // sanitize the output from exec..
-            $sanitizedOutput = Helpers::sanitizeExecOutput($outcome);
-
             // destroy the file..
             unlink($tempFile);
 
+            // sanitize the output from exec..
+            $sanitizedOutput = Helpers::sanitizeExecOutput($outcome);
+
+            // check log/ stop..
+            // var_dump($sanitizedOutput);
+            
+            // has error..
+            $isError = 
+                stripos($sanitizedOutput, "parse error") !== false ||
+                stripos($sanitizedOutput, "fatal error") !== false ||
+                stripos($sanitizedOutput, "warning") !== false ||
+                stripos($sanitizedOutput, "notice") !== false;
+
+            // when error
+            if($isError) {
+                return [
+                    "std_out" => "",
+                    "std_err" => $sanitizedOutput,
+                    "execution_status" => "runtime_error"
+                ];
+            }
+
             // get the outcome as expected..
-            return $sanitizedOutput;
+           return [
+                "std_out" => $sanitizedOutput === '' ? 'No Output' : trim($sanitizedOutput),
+                "std_err" => "",
+                "execution_status" => "success"
+           ];
+        }
+
+        // () -> check for code from client..
+        public static function getFullCode(string $code) {
+
+            // get the code other than function declaration and body..
+            $cleanCode = preg_replace(
+                '/function\s+\w+\s*\([^)]*\)\s*\{[\s\S]*?\}/',
+                '',
+                $code
+            );
+
+            // otherwise get the clean code..
+            return trim($cleanCode);
         }
     }
 

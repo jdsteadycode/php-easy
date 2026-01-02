@@ -5,7 +5,11 @@ import {initManageLogout} from "/php_easy/scripts/admin/pages/page.logout.js";
 import {initHome} from "/php_easy/scripts/user/pages/page.home.js";
 import {initPrep} from "/php_easy/scripts/user/pages/page.prep.js";
 import {initPlayground} from "/php_easy/scripts/user/pages/page.playground.js";
+import {initLearn} from "/php_easy/scripts/user/pages/page.learn.js";
 import {Modal} from "/php_easy/scripts/admin/modals/modals.js";
+
+// get the nav options..
+const navoptions = document.querySelectorAll(".nav-option");
 
 // when document is loaded..
 window.addEventListener("load", async function(event) {
@@ -24,8 +28,22 @@ window.addEventListener("load", async function(event) {
     // set the admin state..
     AdminStore.setCurrentUserId(verificationStatus["user_id"]);
 
-    // show the home page..
-    handlePageContent("Home");
+    // check last seen page..
+    const lastViewPage = sessionStorage.getItem("last_view");
+
+    // check log..
+    // console.log(lastViewPage);
+
+    // when the last view page..
+    if(lastViewPage) {
+        // load the learn page..
+        handlePageContent(lastViewPage);
+        sessionStorage.removeItem("last_view");
+    }
+    else {
+        // show the home page..
+        handlePageContent("Home");
+    }
 });
 
 // when document is clicked..
@@ -57,8 +75,6 @@ menuicn.addEventListener("click", () => {
     nav.classList.toggle("navclose");
 });
 
-// get the nav options..
-const navoptions = document.querySelectorAll(".nav-option");
 
 // attach the listener to the options..
 // console.log(navoptions);
@@ -67,39 +83,36 @@ const navoptions = document.querySelectorAll(".nav-option");
 navoptions.forEach(function (navOption) {
 
     // when a navoption is clicked..
-    navOption.onclick = function (event) {
-
-        // de-activate any navoption..
-        navoptions.forEach(opt => opt.classList.remove("nav-option-active"));
-
-        // check log..
-        // console.log(navOption.innerText.trim().split("\n"));
-
-        // get the option text..
+    navOption.onclick = function () {
+        // get nav text..
         const navOptionText = navOption.innerText.trim().split("\n")[1].trim();
 
-        // check log..
-        console.log(navOptionText);
-
-        // add the class..
-        // make the current nav-option active
-        navOption.classList.add("nav-option-active");
-
-        // load the page content..
+        // show the page content..
         handlePageContent(navOptionText);
-
-        // exit the function call..
-        return;
-
-        // check log..
-        // console.log(navOption);
-    }
+    };
 });
+
+
+// () -> handle active state of nav options..
+function setActiveNav(page) {
+    navoptions.forEach(opt => opt.classList.remove("nav-option-active"));
+
+    navoptions.forEach(opt => {
+        const text = opt.innerText.trim().split("\n")[1]?.trim();
+        if (text === page) {
+            opt.classList.add("nav-option-active");
+        }
+    });
+}
+
 
 
 // () -> handle page specific content..
 // after the html loads..
 function handlePageContent(page) {
+
+    // update the nav option state 
+    setActiveNav(page);
 
     // according to the page..
     switch (page) {
@@ -107,6 +120,11 @@ function handlePageContent(page) {
         // when it is home..
         case `Home`:
             initHome();
+            break;
+
+        // when it is learn..
+        case `Learn`:
+            initLearn();
             break;
 
         // when it is practice (prep view)..

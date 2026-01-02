@@ -1,0 +1,11 @@
+.back-btn {
+    float: right;
+    background: #203ccb;
+    border: none;
+    padding: 6px 14px;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.15s;
+}

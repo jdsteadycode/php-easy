@@ -35,7 +35,7 @@
 
             // return the output..
             return [
-                "status" => true;
+                "status" => true,
                 "message" => "input was processed",
                 "data" => $output
             ];

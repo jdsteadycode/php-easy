@@ -70,8 +70,7 @@
             // return the error to the client..
             echo json_encode([
                 "message" => "problem statement couldn't be added",
-                "status" => false,
-                "response_code" => http_response_code(401)
+                "status" => false
             ]);
             exit();
         }

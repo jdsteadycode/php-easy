@@ -173,6 +173,43 @@
             }
         }
 
+        // () -> handle add test cases to problem set..
+        public function add_testcases_to_problem($statement, $parameters = []) {
+
+            $stmt = $this->db->con->prepare($statement);
+
+            $success = $stmt->execute($parameters);
+
+            return $success; // true or false
+        }
+
+        // () -> handle add function meta to problem set
+        public function add_functionmeta($statement, $parameters = []) {
+
+            $stmt = $this->db->con->prepare($statement);
+
+            $success = $stmt->execute($parameters);
+
+            return $success; // true or false
+        }
+
+        // () -> handle function type of problem_id
+        public function getProblemFunctionType($statement, $parameters = []) {
+
+            // execute the command..
+            $stmt = $this->db->executeCommandOrQuery($statement, $parameters);
+
+            if($stmt) {
+
+                return $stmt->fetch();
+            }
+            else {
+
+                // false when, no error..
+                return false;
+            }
+        }
+
         // DELETE
         // () -> handle deletion of problemset ()
         public function delete_problem_set($statement, $parameters = []) {

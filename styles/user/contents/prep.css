@@ -1,3 +1,9 @@
+.main {
+    overflow-y: auto;
+    height: 100%;
+}
+
+
 /* PHP Prep Page */
 
 .prep-hero {
@@ -29,8 +35,12 @@
 .prep-filters {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
 }
+
 
 .filter-btn {
     padding: 8px 16px;
@@ -61,13 +71,20 @@
 
 .problem-card {
     background: white;
-    padding: 20px;
-    border-radius: 15px;
+    padding: 18px 20px;
+    border-radius: 14px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 1px 1px 6px rgba(0,0,0,0.08);
 }
+
+/* Prevent flex overflow */
+.problem-info {
+    flex: 1;
+    min-width: 0;
+}
+
 
 .problem-title {
     font-size: 18px;
@@ -96,4 +113,115 @@
     background: var(--two-use-color);
     color: white;
     cursor: pointer;
+}
+
+/* for paths */
+/* Paths Wrapper */
+.prep-paths {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Individual Path */
+.prep-path {
+    background: var(--background-color2);
+    border-radius: 16px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+
+.path-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 22px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.path-header:hover {
+    background: rgba(0,0,0,0.03);
+}
+
+.path-title {
+    font-size: 20px;
+    color: var(--primary-color);
+}
+
+.path-meta {
+    font-size: 13px;
+    color: #666;
+    margin-top: 4px;
+}
+
+/* Path progress bar */
+.path-progress {
+    height: 8px;
+    background: #eee;
+    border-radius: 10px;
+    margin-top: 6px;
+    overflow: hidden;
+}
+
+.path-progress-bar {
+    height: 100%;
+    background: #28a745; /* green for progress */
+    width: 0%;
+    border-radius: 10px;
+    transition: width 0.3s ease-in-out;
+}
+
+
+.path-toggle-icon {
+    font-size: 18px;
+    transition: transform 0.25s ease;
+}
+
+.path-problems {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 18px;
+    border-top: 1px solid #eee;
+}
+
+/* Collapsed state */
+.path-problems.collapsed {
+    display: none;
+}
+
+/* Rotate arrow when open */
+.prep-path:not(.collapsed) .path-toggle-icon {
+    transform: rotate(180deg);
+}
+
+.status {
+    font-size: 13px;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+.problem-card.solved {
+    border-left: 4px solid #28a745;
+}
+
+.problem-card.attempted {
+    border-left: 4px solid #ffc107;
+}
+
+.problem-card.unsolved {
+    border-left: 4px solid #ccc;
+}
+
+.status.solved {
+    color: #28a745;
+}
+
+.status.attempted {
+    color: #ffc107;
+}
+
+.status.unsolved {
+    color: #777;
 }

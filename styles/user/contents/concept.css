@@ -1,0 +1,200 @@
+/* Concept Page Styles */
+
+.main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    background-color: var(--background-color2);
+    border-radius: 20px;
+    box-shadow: 3px 3px 15px rgba(0,0,0,0.1);
+    max-height: calc(100vh - 140px); /* adjust content between header and footer correctly */
+}
+
+/* Top Bar: Breadcrumbs + Back Button */
+.concept-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.breadcrumbs {
+    font-size: 14px;
+    color: #555;
+    font-weight: 500;
+}
+
+.breadcrumbs span {
+    margin-right: 5px;
+}
+
+/* Child Concept Tabs */
+
+.concept-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 35px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--background-color3);
+}
+
+.concept-tab {
+    padding: 8px 16px;
+    border-radius: 20px;
+    background-color: var(--background-color3);
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    color: #333;
+}
+
+.concept-tab:hover {
+    background-color: var(--background-color-active);
+    color: #fff;
+}
+
+.concept-tab.active {
+    background-color: var(--two-use-color);
+    color: #fff;
+}
+
+
+.back-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: var(--two-use-color);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.back-btn:hover {
+    background-color: var(--one-use-color);
+}
+
+/* Concept Header */
+.concept-header {
+    margin-bottom: 30px;
+}
+
+.concept-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.concept-summary {
+    font-size: 16px;
+    color: #555;
+}
+
+/* Sections */
+.concept-explanation,
+.concept-example,
+.concept-notes,
+.concept-resources {
+    margin-bottom: 30px;
+}
+
+.concept-explanation h2,
+.concept-example h2,
+.concept-notes h2,
+.concept-resources h2 {
+    font-size: 24px;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--background-color-active);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* Paragraphs */
+.concept-explanation p,
+.concept-notes ul,
+.concept-resources ul {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Notes list */
+.concept-notes ul {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.concept-notes li {
+    margin-bottom: 8px;
+}
+
+/* Code Block */
+.concept-example pre {
+    background-color: var(--background-color3);
+    color: #000;
+    padding: 20px;
+    border-radius: 15px;
+    overflow-x: auto;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Links */
+.concept-resources a {
+    color: var(--two-use-color);
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.concept-resources a:hover {
+    text-decoration: underline;
+}
+
+/* CTA Button */
+.concept-cta {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.concept-cta .primary-btn {
+    padding: 12px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: var(--two-use-color);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.concept-cta .primary-btn:hover {
+    background-color: var(--one-use-color);
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .concept-topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .concept-title {
+        font-size: 28px;
+    }
+
+    .concept-explanation h2,
+    .concept-example h2,
+    .concept-notes h2,
+    .concept-resources h2 {
+        font-size: 20px;
+    }
+}

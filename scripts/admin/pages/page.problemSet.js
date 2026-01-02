@@ -4,6 +4,7 @@ import {manageProblemSetsHTML} from "/php_easy/scripts/admin/templates/problemSe
 import {ProblemSetsApi} from "/php_easy/scripts/admin/apis/api.problemSets.js";
 import {TopicsApi} from "/php_easy/scripts/admin/apis/api.topics.js";
 import {Modal} from "/php_easy/scripts/admin/modals/modals.js";
+import {Toast} from "/php_easy/scripts/common/toasts.js";
 
 // initial state for handling selecting/ de-selecting topics in dropdown..
 const selectedTopics = new Set();
@@ -307,6 +308,168 @@ function attachDeleteSectionEvents(modal) {
     modal.onclick = handleDeleteSectionEvents;
 }
 
+// () -> attach test cases section events..
+function attachTestCasesSectionEvents(modal) {
+
+    // add test case btn
+    const addTestCaseBtn = modal.querySelector('.js-add-testcase-btn');
+
+    // add listener to it
+    addTestCaseBtn.addEventListener('click', (e) => handleTestCaseAppend(modal, e));
+
+    // add click listener to save test cases button
+    modal.querySelector(".js-save-testcases-btn").onclick = function(event) {
+        handleSaveTestCases(modal, event);
+    };
+}
+
+// () -> attach function definition events..
+function attachFunctionDefinitionEvents(modal) {
+
+    // attach event to save function definition button..
+    modal.querySelector(".js-save-function-meta-btn").onclick = function(event) {
+        handleSaveFunctionMeta(modal, event);
+    }
+}
+
+// () -> handle test case append
+function handleTestCaseAppend(modal, e){
+        e.preventDefault();
+
+        // get the element
+        const testCasesContainer = modal.querySelector('.js-test-cases-container');
+        
+        // make an test case sub section
+        const testCaseItem = document.createElement('div');
+        testCaseItem.className = 'modal-section test-case-item';
+        testCaseItem.innerHTML = `
+            <label>Input</label>
+            <textarea class="modal-textarea js-testcase-input"></textarea>
+
+            <label>Expected Output</label>
+            <textarea class="modal-textarea js-testcase-output"></textarea>
+
+            <span class="remove-topic js-remove-testcase">🗑 Remove</span>
+        `;
+
+        // add to test case section.
+        testCasesContainer.appendChild(testCaseItem);
+
+        // handle remove test case..
+        testCaseItem.querySelector('.js-remove-testcase').addEventListener('click', () => {
+            testCaseItem.remove();
+        });
+}
+
+// () -> handle the save test cases..
+async function handleSaveTestCases(modal, event) {
+    event.preventDefault();
+
+    // update the text..
+    event.target.innerText = "saving test case..";
+
+    // disable the button..
+    event.target.setAttribute("disabled", "");
+
+    // initial test cases data..
+    const testCases = [];
+
+    // problem set id..
+    const problemSetId = modal.querySelector(".js-update-ps-id").value;
+
+    // Select all test case items
+    modal.querySelectorAll('.js-testcase-input').forEach((inputEl, index) => {
+        const outputEl = modal.querySelectorAll('.js-testcase-output')[index];
+    
+        // save the data..
+        testCases.push({
+            input: inputEl.value.trim(),
+            expected_output: outputEl.value.trim()
+        });
+    });
+
+    // check log..
+    // console.log(testCases, problemSetId);
+
+    // try to add test cases..
+    const addResponse = await ProblemSetsApi.addTestCasesToProblemSet(testCases, problemSetId);
+
+    // check log..
+    // console.log(addResponse);
+
+    // show the toast..
+    Toast.show({
+        "title": addResponse.status ? "Success" : "Info",
+        "message": addResponse.message ?? "Action Completed!",
+        "type": addResponse.status ? "success" : "info" 
+    });
+
+    // after 1.5 seconds..
+    setTimeout(function() {
+
+        // update the text..
+        event.target.innerText = "Save test Case(s)";
+
+        // enable the button again..
+        event.target.removeAttribute("disabled");
+
+        // when test cases addon fails..
+        if(addResponse.status === false) return;
+
+        // clear the inputs..
+        modal.querySelectorAll('.js-testcase-input').forEach((inputEl, index) => {
+            const outputEl = modal.querySelectorAll('.js-testcase-output')[index];
+        
+            // clear the existing texts..
+            inputEl.value = "";
+            outputEl.value = "";
+        });
+    }, 1500);
+}
+
+// () -> handle function definition addon..
+async function handleSaveFunctionMeta(modal, event) {
+
+    // get the details..
+    const problemSetId = modal.querySelector(".js-update-ps-id").value;
+    const functionNameEl = modal.querySelector(".js-ps-update-function-name");
+    const functionTypeEl = modal.querySelector(".js-ps-update-function-type");
+    const starterCodeEl = modal.querySelector(".js-ps-update-starter-code");
+
+    // validate the data..
+    if(functionNameEl.value.trim() === "") {
+        Toast.show({"message": "function name is required"});
+        return;
+    }   
+
+    if(!functionTypeEl.value) {
+        Toast.show({"message": "Function type is required"});
+        return;
+    }
+
+    if(!/^[a-zA-Z_][a-zA-Z0-9_]*$/.test(functionNameEl.value.trim())) {
+        Toast.show({"message": "Function name is invalid"});
+        return;
+    }
+
+    // handle add function meta details..
+    const metaResponse = await ProblemSetsApi.saveFunctionMeta(
+        functionNameEl.value.trim(),
+        functionTypeEl.value,
+        starterCodeEl.value.trim(),
+        problemSetId
+    );
+
+    // check log..
+    // console.log(metaResponse);
+
+    // show the toast..
+    Toast.show({
+        message: metaResponse.message,
+        type: metaResponse.status
+    });
+}
+
 // () -> handle the delete section events..
 function handleDeleteSectionEvents(event) {
 
@@ -457,7 +620,7 @@ function handleOpenUpdateProblemSetModal(btn) {
     const problemSet = AdminStore.problemSets.find(problemset => problemset.id == problemSetId);
 
     // check log..
-    // console.log(problemSet);
+    console.log(problemSet);
 
     // fill the data in the modal..
 
@@ -494,6 +657,20 @@ function handleOpenUpdateProblemSetModal(btn) {
 
     // attach the button listeners for each section..
     attachUpdateSectionEvents(modal);
+
+    // Section 4.. (function defination section)
+    
+    // render the functiond definition details..
+    modal.querySelector(".js-ps-update-function-name").value = problemSet?.function_name || "";
+    modal.querySelector(".js-ps-update-function-type").value = problemSet?.function_type || "";
+    modal.querySelector(".js-ps-update-starter-code").value = problemSet?.starter_code || "";
+
+    // attach function definition events..
+    attachFunctionDefinitionEvents(modal);
+
+    // Section 5.. (test cases section)
+    attachTestCasesSectionEvents(modal);
+
 
     // at the end, open up the modal..
     Modal.openModal("updateProblemSetModal");
@@ -659,7 +836,7 @@ async function handleAddProblemSet(event) {
     // console.log(psTitle, psDescription, psSelectedDifficulty, topicsSelected, psSampleInput, psSampleOutput, psHints);
 
     // add the problem-set..
-    await ProblemSetsApi.addProblemSetsAndTopics(
+    const added = await ProblemSetsApi.addProblemSetsAndTopics(
         psTitle,
         psDescription,
         psSelectedDifficulty,
@@ -669,6 +846,9 @@ async function handleAddProblemSet(event) {
         psHints,
         createdBy
     );
+
+    // check log..
+    console.log(added);
 
     // get the problemsets..
     const response = await ProblemSetsApi.getProblemSets();

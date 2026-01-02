@@ -1,14 +1,14 @@
 // A central object to handle API..
-export const PlaygroundApi = {
-  // () -> run the code
-  runCode: async function (code = null) {
+export const PrepApi = {
+
+  // () -> get all problemsets 
+  getProblemSets: async function () {
     // make an php api call..
     return (
       fetch(
-        `http://localhost:8888/php_easy/apis/user/playground/exec.php`,
+        `http://localhost:8888/php_easy/apis/user/problemsets/read.php`,
         {
-          method: "POST",
-          body: JSON.stringify({"code": code})
+          method: "GET"
         }
       )
         // grab the response..
@@ -41,30 +41,19 @@ export const PlaygroundApi = {
     );
   },
 
-  // () -> submit the code..
-  submitCode: async function (code, problemId) {
-
-    // set the data to send..
-    const data = {
-      "code":  code,
-      "problemId": problemId
-    }
-
+   // () -> get single problemset
+  getProblemSet: async function (id = null) {
     // make an php api call..
     return (
       fetch(
-        `http://localhost:8888/php_easy/apis/user/problemsets/submit.php`,
+        `http://localhost:8888/php_easy/apis/user/problemsets/read.php?p_id=${id}`,
         {
-          method: "POST",
-          body: JSON.stringify(data)
+          method: "GET"
         }
       )
         // grab the response..
         .then(function (response) {
-
           // when response is not successful..
-          // anything outside of status: 200-99 etc..
-          // http_error
           if (!response.ok) return { status: false, message: "http_error" };
 
           // return response.text();
@@ -91,4 +80,5 @@ export const PlaygroundApi = {
         })
     );
   },
+
 };

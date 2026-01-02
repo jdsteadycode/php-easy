@@ -66,20 +66,28 @@
                     <span class="nav-emoji"> 👦🏻 </span>
                     <h3>Manage Users</h3>
                 </div>
+
+                <div class="nav-option option6">
+                    <span class="nav-emoji"> ⚙️ </span>
+                    <h3>Settings</h3>
+                </div>
             HTML;
         }
         else if($pageView === "user") {
 
             // set navoptions for admin..
             $navOptions = <<<HTML
+                <div class="option3 nav-option">
+                    <span class="nav-emoji"> 📖 </span>
+                    <h3>Learn</h3>
+                </div>
+                <div class="option2 nav-option">
+                    <span class="nav-emoji"> 📝 </span>
+                    <h3>Practice</h3>
+                </div>
                 <div class="nav-option option1 nav-option-active">
                     <span class="nav-emoji"> 📑 </span>
                     <h3>Playground</h3>
-                </div>
-
-                <div class="option2 nav-option">
-                    <span class="nav-emoji"> 🗒 </span>
-                    <h3>Practice</h3>
                 </div>
             HTML;
         }
@@ -102,14 +110,6 @@
             
             <!-- render the navoptions accordingly -->
             <?= $navOptionsHtml ?>
-
-            <div class="nav-option option6">
-                <!-- <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183320/4.png"
-                            class="nav-img" alt="settings" /> -->
-
-                <span class="nav-emoji"> ⚙️ </span>
-                <h3>Settings</h3>
-            </div>
 
             <div class="nav-option logout">
                 <!-- <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183321/7.png"

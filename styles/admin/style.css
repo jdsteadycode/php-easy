@@ -142,6 +142,7 @@ footer  {
     position: relative;
     top: 70px;
     z-index: 1;
+    height: calc(100vh - 140px);    /* adjust content between header + footer heights */
 }
 
 /* for empty content message */

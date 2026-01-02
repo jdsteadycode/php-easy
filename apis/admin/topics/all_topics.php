@@ -14,7 +14,7 @@
         // handle all topics
         $topic = new TopicController();
         $all_topics = $topic->all_topics(
-            "SELECT * FROM topics"
+            "SELECT * FROM topics WHERE deleted_at IS NULL"
         );
 
         // send the response to client..
